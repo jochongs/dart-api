@@ -1,0 +1,25 @@
+{
+  "name": "dart-api",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jochongs/dart-api.git"
+  },
+  "keywords": [
+    "dart"
+  ],
+  "author": "jochongs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jochongs/dart-api/issues"
+  },
+  "homepage": "https://github.com/jochongs/dart-api#readme",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
+}
