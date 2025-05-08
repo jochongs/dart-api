@@ -1,4 +1,6 @@
+import { DartBase } from "../DartBase";
+
 /**
  * TODO
  */
-export class DartDisclosureInfo {}
+export class DartDisclosureInfo extends DartBase {}

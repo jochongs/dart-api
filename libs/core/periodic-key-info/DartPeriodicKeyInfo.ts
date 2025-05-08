@@ -1,4 +1,6 @@
+import { DartBase } from "../DartBase";
+
 /**
  * TODO
  */
-export class DartPeriodicKeyInfo {}
+export class DartPeriodicKeyInfo extends DartBase {}
