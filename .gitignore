@@ -3,6 +3,7 @@
 # develop
 .vscode
 dist/
+develop-test/
 
 # dependencies
 /node_modules
