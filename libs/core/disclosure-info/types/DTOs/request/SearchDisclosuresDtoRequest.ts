@@ -1,10 +1,13 @@
 /**
  * ## [KO]
  * 공시 검색 요청 인자
+ *
  * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019001#:~:text=XML-,%EC%9A%94%EC%B2%AD%20%EC%9D%B8%EC%9E%90,-%EC%9A%94%EC%B2%AD%ED%82%A4
  *
  * ## [EN]
+ * Disclosure search request parameters
  *
+ * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001#:~:text=XML-,Requested,-variables
  */
 export type SearchDisclosuresRequestDto = {
   /**
@@ -42,6 +45,7 @@ export type SearchDisclosuresRequestDto = {
 
   /**
    * ## [KO]
+   * 공시 유형
    * - A : 정기공시
    * - B : 주요사항보고
    * - C : 발행공시
@@ -54,6 +58,7 @@ export type SearchDisclosuresRequestDto = {
    * - J : 공정위공시
    *
    * ## [EN]
+   * Disclosure type
    * - A: Periodic Disclosure
    * - B: Report on Major Issues
    * - C: Issuance Disclosure
