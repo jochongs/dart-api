@@ -1,4 +1,4 @@
-import { DartExceptionStatusType } from "./DartExceptionStatus";
+import { DartExceptionStatusType } from "../types/DartExceptionStatus";
 
 export class DartException {
   constructor(
