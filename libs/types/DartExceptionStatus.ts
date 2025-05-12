@@ -151,5 +151,3 @@ export const DartExceptionStatus = {
  */
 export type DartExceptionStatusType =
   (typeof DartExceptionStatus)[keyof typeof DartExceptionStatus];
-
-DartExceptionStatus;
