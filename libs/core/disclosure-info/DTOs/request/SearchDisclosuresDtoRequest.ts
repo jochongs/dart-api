@@ -48,9 +48,43 @@ export type SearchDisclosuresRequestDto = {
   /**
    * ## [KO]
    * 공시 유형
+   * - A : 정기공시
+   * - B : 주요사항보고
+   * - C : 발행공시
+   * - D : 지분공시
+   * - E : 기타공시
+   * - F : 외부감사관련
+   * - G : 펀드공시
+   * - H : 자산유동화
+   * - I : 거래소공시
+   * - J : 공정위공시
+   *
+   * @example
+   * ```ts
+   * const dto: SearchDisclosuresRequestDto = {
+   *    pblntf_ty: publicNotificationType.A
+   * }
+   * ```
    *
    * ## [EN]
    * Disclosure type
+   * - A: Periodic Disclosure
+   * - B: Report on Major Issues
+   * - C: Issuance Disclosure
+   * - D: Equity Disclosure
+   * - E: Other Disclosure
+   * - F: Related to External Audits
+   * - G: Fund Disclosure
+   * - H: Asset-Backed Securitization
+   * - I: Exchange Disclosure
+   * - J: Fair Trade Commission Disclosure
+   *
+   * @example
+   * ```ts
+   * const dto: SearchDisclosuresRequestDto = {
+   *    pblntf_ty: publicNotificationType.A
+   * }
+   * ```
    */
   pblntf_ty?: PublicNotificationType;
 
