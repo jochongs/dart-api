@@ -1,8 +1,8 @@
-import { DartExceptionStatus } from "../types/DartExceptionStatus";
+import { DartStatus } from "../types/DartStatus";
 
 export class DartException {
   constructor(
-    public readonly status: DartExceptionStatus,
+    public readonly status: DartStatus,
     public readonly message: string
   ) {}
 }

@@ -11,7 +11,7 @@
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001#:~:text=API%20result-,Message,-description
  */
-export const dartExceptionStatus = {
+export const dartStatus = {
   /**
    * ## [KO]
    * 정상
@@ -142,12 +142,11 @@ export const dartExceptionStatus = {
 
 /**
  * ## [KO]
- * `dartExceptionStatus` 객체에 정의된 응답 코드 문자열 타입입니다.
+ * `dartStatus` 객체에 정의된 응답 코드 문자열 타입입니다.
  * API 응답의 상태 코드를 타입 수준에서 제한하고 싶을 때 사용할 수 있습니다.
  *
  * ## [EN]
- * String union type derived from the keys of `dartExceptionStatus`.
+ * String union type derived from the keys of `dartStatus`.
  * Useful for type-safe handling of known DART API response codes.
  */
-export type DartExceptionStatus =
-  (typeof dartExceptionStatus)[keyof typeof dartExceptionStatus];
+export type DartStatus = (typeof dartStatus)[keyof typeof dartStatus];
