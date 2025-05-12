@@ -29,8 +29,7 @@ export class DartDisclosureInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001
    */
   public async searchDisclosures(dto: SearchDisclosuresRequestDto) {
-    dto;
-    const result = await this.axios.get("/list.json", {
+    const result = await this.axios.get<string>("/list.json", {
       params: {
         crtfc_key: this.get_API_KEY(),
         corp_code: dto.corp_code,
