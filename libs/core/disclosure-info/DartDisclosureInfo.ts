@@ -1,4 +1,6 @@
 import { DartBase } from "../DartBase";
+import { SearchDisclosuresRequestDto } from "./DTOs/request/SearchDisclosuresRequestDto";
+import { PublicNotificationType } from "./types/PublicNotificationType";
 
 /**
  * ## [KO]
@@ -26,17 +28,19 @@ export class DartDisclosureInfo extends DartBase {
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001
    */
-  public async searchDisclosures() {
+  public async searchDisclosures(dto: SearchDisclosuresRequestDto) {
+    dto;
     const result = await this.axios.get("/list.json", {
       params: {
         crtfc_key: this.get_API_KEY(),
         bgn_de: "20250101",
         end_de: "20250209",
-        pblntf_detail_ty: undefined,
+        pblntf_detail_ty: (dto as any).pblntf_detail_ty,
+        pblntf_ty: (dto as any).pblntf_ty,
       },
     });
 
-    return result.data;
+    return JSON.parse(result.data);
   }
 }
 
