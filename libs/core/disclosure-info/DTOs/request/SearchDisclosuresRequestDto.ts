@@ -49,9 +49,13 @@ export type SearchDisclosuresRequestDto = {
    * 최종보고서만 검색여부(Y or N)
    * 1) 기본값 : N(정정이 있는 경우 최종정정만 검색)
    *
+   * @default "N"
+   *
    * ## [EN]
    * Whether to search only final reports (Y or N)
    * 1) Default: N (if there are any corrections, search only the final correction)
+   *
+   * @default "N"
    */
   last_reprt_at?: "Y" | "N";
 

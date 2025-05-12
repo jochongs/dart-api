@@ -33,38 +33,20 @@ export class DartDisclosureInfo extends DartBase {
     const result = await this.axios.get("/list.json", {
       params: {
         crtfc_key: this.get_API_KEY(),
-        bgn_de: "20250101",
-        end_de: "20250209",
-        pblntf_detail_ty: (dto as any).pblntf_detail_ty,
-        pblntf_ty: (dto as any).pblntf_ty,
+        corp_code: dto.corp_code,
+        bgn_de: dto.bgn_de,
+        end_de: dto.end_de,
+        last_report_at: dto.last_reprt_at,
+        pblntf_ty: dto.pblntf_ty,
+        pblntf_detail_ty: dto.pblntf_detail_ty,
+        corp_cls: dto.corp_cls,
+        sort: dto.sort,
+        sort_mth: dto.sort_mth,
+        page_no: dto.page_no,
+        page_count: dto.page_count,
       },
     });
 
     return JSON.parse(result.data);
   }
 }
-
-// const a = {
-//   corp_code: "00116426",
-//   corp_name: "IREM",
-//   stock_code: "009730",
-//   corp_cls: "K",
-//   report_nm: "[Corrected description]Annual Report (2020.12)",
-//   rcept_no: "20250124000843",
-//   flr_nm: "이렘",
-//   rcept_dt: "20250124",
-//   rm: "CC",
-// };
-
-// const b = {
-//   corp_code: "00134176",
-//   corp_name: "SEWOO GLOBAL",
-//   stock_code: "013000",
-//   corp_cls: "Y",
-//   report_nm:
-//     "[Added attachment]Decision on Cash Dividends and Dividends in Kind              ",
-//   rcept_no: "20250207800408",
-//   flr_nm: "세우글로벌",
-//   rcept_dt: "20250207",
-//   rm: "SC",
-// };
