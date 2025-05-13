@@ -1,4 +1,4 @@
-import { dartStatus } from "./DartStatus";
+import { DartExceptionStatus, DartStatus, dartStatus } from "./DartStatus";
 
 export type DartSuccessResponse<T> = {
   /**
@@ -30,7 +30,7 @@ export type DartExceptionResponse = {
    * Abnormal API response.
    * Check `dartStatus`.
    */
-  status: Exclude<typeof dartStatus, typeof dartStatus.SUCCESS>;
+  status: DartExceptionStatus;
 
   /**
    * ## [KO]

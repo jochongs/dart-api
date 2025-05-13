@@ -150,3 +150,15 @@ export const dartStatus = {
  * Useful for type-safe handling of known DART API response codes.
  */
 export type DartStatus = (typeof dartStatus)[keyof typeof dartStatus];
+
+/**
+ * ## [KO]
+ * `dartStatus` 객체에 정의된 응답 코드 문자열 타입 중 성공 상태를 제외한 타입입니다.
+ *
+ * ## [EN]
+ * String union type derived from the keys of `dartStatus` excluding the success status.
+ */
+export type DartExceptionStatus = Exclude<
+  DartStatus,
+  typeof dartStatus.SUCCESS
+>;

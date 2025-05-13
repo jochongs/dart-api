@@ -1,5 +1,7 @@
 import { Axios } from "axios";
 import { DartOptions } from "../types/DartOptions";
+import { DartExceptionResponse, DartResponse } from "../types/DartResponse";
+import { DartException } from "../exceptions/DartException";
 
 export abstract class DartBase {
   private readonly API_KEY: string;
@@ -39,5 +41,41 @@ export abstract class DartBase {
     return this.language === "KR"
       ? "https://opendart.fss.or.kr/api"
       : "https://engopendart.fss.or.kr/engapi";
+  }
+
+  protected async get<T>(path: string, params: any = {}): Promise<T> {
+    const response = await this.axios.get<DartResponse<T> | string>(path, {
+      params: {
+        crtfc_key: this.get_API_KEY(),
+        ...params,
+      },
+    });
+
+    let dartResponse: DartResponse<T>;
+
+    if (typeof response.data === "string") {
+      dartResponse = JSON.parse(response.data);
+    } else {
+      dartResponse = response.data;
+    }
+
+    if (this.isDartException(dartResponse)) {
+      throw new DartException(dartResponse.status, dartResponse.message);
+    }
+
+    return dartResponse;
+  }
+
+  /**
+   * ## [KO]
+   * API 응답이 예외 응답인지 확인하는 메서드입니다.
+   *
+   * ## [EN]
+   * Method to check if the API response is an exception response.
+   */
+  protected isDartException<T>(
+    response: DartResponse<T>
+  ): response is DartExceptionResponse {
+    return response.status !== "000";
   }
 }
