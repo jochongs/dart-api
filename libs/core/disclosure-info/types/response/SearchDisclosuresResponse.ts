@@ -1,4 +1,4 @@
-export type SearchDisclosureResponse = {
+export type SearchDisclosuresResponse = {
   /**
    * ## [KO]
    * 페이지 번호

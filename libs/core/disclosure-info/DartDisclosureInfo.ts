@@ -1,7 +1,7 @@
 import { DartResponse } from "../../types/DartResponse";
 import { DartBase } from "../DartBase";
-import { SearchDisclosuresRequestDto } from "./DTOs/request/SearchDisclosuresRequestDto";
-import { SearchDisclosureResponse } from "./DTOs/response/SearchDisclosuresResponseDto";
+import { SearchDisclosuresOption } from "./types/option/SearchDisclosuresOption";
+import { SearchDisclosuresResponse } from "./types/response/SearchDisclosuresResponse";
 
 /**
  * ## [KO]
@@ -29,25 +29,25 @@ export class DartDisclosureInfo extends DartBase {
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001
    */
-  public async searchDisclosures(dto: SearchDisclosuresRequestDto) {
+  public async searchDisclosures(options: SearchDisclosuresOption) {
     const response = await this.axios.get<string>("/list.json", {
       params: {
         crtfc_key: this.get_API_KEY(),
-        corp_code: dto.corp_code,
-        bgn_de: dto.bgn_de,
-        end_de: dto.end_de,
-        last_report_at: dto.last_reprt_at,
-        pblntf_ty: dto.pblntf_ty,
-        pblntf_detail_ty: dto.pblntf_detail_ty,
-        corp_cls: dto.corp_cls,
-        sort: dto.sort,
-        sort_mth: dto.sort_mth,
-        page_no: dto.page_no,
-        page_count: dto.page_count,
+        corp_code: options.corp_code,
+        bgn_de: options.bgn_de,
+        end_de: options.end_de,
+        last_report_at: options.last_reprt_at,
+        pblntf_ty: options.pblntf_ty,
+        pblntf_detail_ty: options.pblntf_detail_ty,
+        corp_cls: options.corp_cls,
+        sort: options.sort,
+        sort_mth: options.sort_mth,
+        page_no: options.page_no,
+        page_count: options.page_count,
       },
     });
 
-    const result: DartResponse<SearchDisclosureResponse> = JSON.parse(
+    const result: DartResponse<SearchDisclosuresResponse> = JSON.parse(
       response.data
     );
 

@@ -1,5 +1,5 @@
-import { PublicNotificationDetailType } from "../../types/PublicNotificationDetailType";
-import { PublicNotificationType } from "../../types/PublicNotificationType";
+import { PublicNotificationDetailType } from "../PublicNotificationDetailType";
+import { PublicNotificationType } from "../PublicNotificationType";
 
 /**
  * ## [KO]
@@ -12,7 +12,7 @@ import { PublicNotificationType } from "../../types/PublicNotificationType";
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001#:~:text=XML-,Requested,-variables
  */
-export type SearchDisclosuresRequestDto = {
+export type SearchDisclosuresOption = {
   /**
    * ## [KO]
    * 공시대상회사의 고유번호(8자리)
