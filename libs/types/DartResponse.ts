@@ -1,6 +1,6 @@
 import { dartStatus } from "./DartStatus";
 
-export type SuccessResponseDto<T> = {
+export type DartSuccessResponse<T> = {
   /**
    * ## [KO]
    * 정상 API 응답.
@@ -20,7 +20,7 @@ export type SuccessResponseDto<T> = {
   message: string;
 } & T;
 
-export type ExceptionResponseDto = {
+export type DartExceptionResponse = {
   /**
    * ## [KO]
    * 비정상 API 응답.
@@ -42,4 +42,4 @@ export type ExceptionResponseDto = {
   message: string;
 };
 
-export type BasicResponseDto<T> = SuccessResponseDto<T> | ExceptionResponseDto;
+export type DartResponse<T> = DartSuccessResponse<T> | DartExceptionResponse;

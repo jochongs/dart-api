@@ -1,5 +1,7 @@
+import { DartResponse } from "../../types/DartResponse";
 import { DartBase } from "../DartBase";
 import { SearchDisclosuresRequestDto } from "./DTOs/request/SearchDisclosuresRequestDto";
+import { SearchDisclosureResponse } from "./DTOs/response/SearchDisclosuresResponseDto";
 
 /**
  * ## [KO]
@@ -28,7 +30,7 @@ export class DartDisclosureInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001
    */
   public async searchDisclosures(dto: SearchDisclosuresRequestDto) {
-    const result = await this.axios.get<string>("/list.json", {
+    const response = await this.axios.get<string>("/list.json", {
       params: {
         crtfc_key: this.get_API_KEY(),
         corp_code: dto.corp_code,
@@ -45,6 +47,10 @@ export class DartDisclosureInfo extends DartBase {
       },
     });
 
-    return JSON.parse(result.data);
+    const result: DartResponse<SearchDisclosureResponse> = JSON.parse(
+      response.data
+    );
+
+    return result;
   }
 }
