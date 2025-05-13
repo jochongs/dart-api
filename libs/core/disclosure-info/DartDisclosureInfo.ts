@@ -1,7 +1,12 @@
 import { DartMethodOptions } from "../../types/DartMethodOptions";
 import { DartBase } from "../DartBase";
+import {
+  CorporateStatusOverview,
+  RawCorporateStatusOverview,
+} from "./model/CorporateStatusOverview";
 import { Disclosure, RawDisclosure } from "./model/Disclosure";
 import { SearchDisclosuresParams } from "./types/param/SearchDisclosuresParams";
+import { GetOverviewOfCorporateResponse } from "./types/response/GetOverviewOfCorporateResponse";
 import { SearchDisclosuresResponse } from "./types/response/SearchDisclosuresResponse";
 
 /**
@@ -41,7 +46,6 @@ export class DartDisclosureInfo extends DartBase {
     const response = await this.get<SearchDisclosuresResponse<RawDisclosure>>(
       "/list.json",
       {
-        crtfc_key: this.get_API_KEY(),
         corp_code: params.corp_code,
         bgn_de: params.bgn_de,
         end_de: params.end_de,
@@ -64,5 +68,42 @@ export class DartDisclosureInfo extends DartBase {
       ...response,
       list: response.list.map(Disclosure.fromRaw),
     } as SearchDisclosuresResponse<Disclosure> as any;
+  }
+
+  /**
+   * ## [KO]
+   * DART에 등록되어있는 기업의 개황정보를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019002
+   *
+   * ## [EN]
+   * Provide a status overview of a corporation registered with DART.
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00002
+   *
+   * @param corp_code - [KO]기업 고유번호: 공시대상회사의 고유번호(8자리)
+   * @param corp_code - [EN]Corporation code: Corporation code of disclosing company (8 digits)
+   */
+  public async getOverviewOfCorporate<TRaw extends boolean = false>(
+    corp_code: string,
+    options?: DartMethodOptions<TRaw>
+  ): Promise<
+    TRaw extends true
+      ? GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
+      : GetOverviewOfCorporateResponse<CorporateStatusOverview>
+  > {
+    const response = await this.get<
+      GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
+    >("/company.json", {
+      corp_code,
+    });
+
+    if (options?.raw) {
+      return response as GetOverviewOfCorporateResponse<RawCorporateStatusOverview> as any;
+    }
+
+    return CorporateStatusOverview.fromRaw(
+      response
+    ) as GetOverviewOfCorporateResponse<CorporateStatusOverview> as any;
   }
 }
