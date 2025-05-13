@@ -1,4 +1,15 @@
-export type SearchDisclosuresResponse = {
+import { Disclosure, RawDisclosure } from "../../model/Disclosure";
+
+/**
+ * ## [KO]
+ * `searchDisclosures` 메서드 응답 결과
+ *
+ * ## [EN]
+ * Response of `searchDisclosures` method
+ */
+export type SearchDisclosuresResponse<
+  T extends Disclosure | RawDisclosure = Disclosure
+> = {
   /**
    * ## [KO]
    * 페이지 번호
@@ -34,4 +45,6 @@ export type SearchDisclosuresResponse = {
    * Total pages
    */
   total_page: number;
+
+  list: T[];
 };

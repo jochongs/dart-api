@@ -1,5 +1,7 @@
+import { DartMethodOptions } from "../../types/DartMethodOptions";
 import { DartBase } from "../DartBase";
-import { SearchDisclosuresOption } from "./types/option/SearchDisclosuresOption";
+import { Disclosure, RawDisclosure } from "./model/Disclosure";
+import { SearchDisclosuresParams } from "./types/param/SearchDisclosuresParams";
 import { SearchDisclosuresResponse } from "./types/response/SearchDisclosuresResponse";
 
 /**
@@ -28,22 +30,39 @@ export class DartDisclosureInfo extends DartBase {
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001
    */
-  public async searchDisclosures(
-    options: SearchDisclosuresOption
-  ): Promise<SearchDisclosuresResponse> {
-    return await this.get<SearchDisclosuresResponse>("/list.json", {
-      crtfc_key: this.get_API_KEY(),
-      corp_code: options.corp_code,
-      bgn_de: options.bgn_de,
-      end_de: options.end_de,
-      last_report_at: options.last_reprt_at,
-      pblntf_ty: options.pblntf_ty,
-      pblntf_detail_ty: options.pblntf_detail_ty,
-      corp_cls: options.corp_cls,
-      sort: options.sort,
-      sort_mth: options.sort_mth,
-      page_no: options.page_no,
-      page_count: options.page_count,
-    });
+  public async searchDisclosures<T extends boolean = false>(
+    params: SearchDisclosuresParams,
+    options?: DartMethodOptions<T>
+  ): Promise<
+    T extends true
+      ? SearchDisclosuresResponse<RawDisclosure>
+      : SearchDisclosuresResponse<Disclosure>
+  > {
+    const response = await this.get<SearchDisclosuresResponse<RawDisclosure>>(
+      "/list.json",
+      {
+        crtfc_key: this.get_API_KEY(),
+        corp_code: params.corp_code,
+        bgn_de: params.bgn_de,
+        end_de: params.end_de,
+        last_report_at: params.last_reprt_at,
+        pblntf_ty: params.pblntf_ty,
+        pblntf_detail_ty: params.pblntf_detail_ty,
+        corp_cls: params.corp_cls,
+        sort: params.sort,
+        sort_mth: params.sort_mth,
+        page_no: params.page_no,
+        page_count: params.page_count,
+      }
+    );
+
+    if (options?.raw) {
+      return response as SearchDisclosuresResponse<RawDisclosure> as any;
+    }
+
+    return {
+      ...response,
+      list: response.list.map(Disclosure.fromRaw),
+    } as SearchDisclosuresResponse<Disclosure> as any;
   }
 }
