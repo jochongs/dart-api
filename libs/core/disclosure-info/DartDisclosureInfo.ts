@@ -30,11 +30,11 @@ export class DartDisclosureInfo extends DartBase {
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001
    */
-  public async searchDisclosures<T extends boolean = false>(
+  public async searchDisclosures<TRaw extends boolean = false>(
     params: SearchDisclosuresParams,
-    options?: DartMethodOptions<T>
+    options?: DartMethodOptions<TRaw>
   ): Promise<
-    T extends true
+    TRaw extends true
       ? SearchDisclosuresResponse<RawDisclosure>
       : SearchDisclosuresResponse<Disclosure>
   > {
