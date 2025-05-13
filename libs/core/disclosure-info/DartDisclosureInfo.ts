@@ -1,6 +1,5 @@
 import { DartBase } from "../DartBase";
 import { SearchDisclosuresRequestDto } from "./DTOs/request/SearchDisclosuresRequestDto";
-import { PublicNotificationType } from "./types/PublicNotificationType";
 
 /**
  * ## [KO]
