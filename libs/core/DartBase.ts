@@ -43,6 +43,15 @@ export abstract class DartBase {
       : "https://engopendart.fss.or.kr/engapi";
   }
 
+  /**
+   * ## [KO]
+   * GET 요청을 보내는 메서드입니다.
+   * params 인자에 API 키를 포함하여 요청을 보냅니다.
+   *
+   * ## [EN]
+   * Method to send a GET request.
+   * Includes the API key in the params argument when sending the request.
+   */
   protected async get<T>(path: string, params: any = {}): Promise<T> {
     const response = await this.axios.get<DartResponse<T> | string>(path, {
       params: {
