@@ -73,12 +73,12 @@ export class DartDisclosureInfo extends DartBase {
   }
 
   /**
-   * ## [KO]
+   * ## [KO] - 기업개황
    * DART에 등록되어있는 기업의 개황정보를 제공합니다.
    *
    * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019002
    *
-   * ## [EN]
+   * ## [EN] - Overview of corporate status
    * Provide a status overview of a corporation registered with DART.
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00002
@@ -109,5 +109,25 @@ export class DartDisclosureInfo extends DartBase {
     return CorporateStatusOverview.fromRaw(
       response
     ) as GetOverviewOfCorporateResponse<CorporateStatusOverview> as any;
+  }
+
+  /**
+   * ## [KO] - 공시서류원본파일
+   * 공시보고서 원본파일을 제공합니다.
+   *
+   * ## [EN] - Original disclosure document file
+   * The original disclosure document files are provided.
+   *
+   * @param rcept_no - [KO]접수번호: 공시보고서의 접수번호
+   * @param rcept_no - [EN]Receipt number: Receipt number of the disclosure report
+   */
+  public async getOriginalDisclosureDocumentFile(
+    rcept_no: string
+  ): Promise<ArrayBuffer> {
+    const response = await this.get<ArrayBuffer>("/document.xml", {
+      rcept_no: rcept_no,
+    });
+
+    return response;
   }
 }

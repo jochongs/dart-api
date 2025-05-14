@@ -1,12 +1,19 @@
-import { Axios } from "axios";
+import { Axios, AxiosResponse } from "axios";
 import { DartOptions } from "../types/DartOptions";
 import { DartExceptionResponse, DartResponse } from "../types/DartResponse";
 import { DartException } from "../exceptions/DartException";
 import { DartMethodOptions } from "../types/DartMethodOptions";
+import { XMLParser } from "fast-xml-parser";
+import {
+  dartResponseContentType,
+  DartResponseContentType,
+} from "../types/DartResponseContentType";
+import { DartError } from "../types/DartError";
 
 export abstract class DartBase {
   private readonly API_KEY: string;
   private readonly language: "KR" | "EN";
+  private readonly xmlParser: XMLParser;
   protected readonly axios: Axios;
 
   constructor(options: DartOptions) {
@@ -16,6 +23,8 @@ export abstract class DartBase {
     this.axios = new Axios({
       baseURL: this.get_URL(),
     });
+
+    this.xmlParser = new XMLParser();
   }
 
   /**
@@ -54,26 +63,85 @@ export abstract class DartBase {
    * Includes the API key in the params argument when sending the request.
    */
   protected async get<T>(path: string, params: any = {}): Promise<T> {
-    const response = await this.axios.get<DartResponse<T> | string>(path, {
+    const response = await this.axios.get<ArrayBuffer>(path, {
       params: {
         crtfc_key: this.get_API_KEY(),
         ...params,
       },
+      responseType: "arraybuffer",
     });
 
-    let dartResponse: DartResponse<T>;
-
-    if (typeof response.data === "string") {
-      dartResponse = JSON.parse(response.data);
-    } else {
-      dartResponse = response.data;
+    if (response.status !== 200) {
+      throw new DartError(
+        `DART API request failed with status code ${response.status}`,
+        response.headers
+      );
     }
+
+    const contentType = this.extractResponseContentType(response);
+
+    if (contentType === dartResponseContentType.X_MSDOWLOAD) {
+      return response.data as T;
+    }
+
+    const dartResponse: DartResponse<T | string> =
+      await this.getResponseBodyWithJsonForm(contentType, response.data);
 
     if (this.isDartException(dartResponse)) {
       throw new DartException(dartResponse.status, dartResponse.message);
     }
 
     return dartResponse;
+  }
+
+  /**
+   * ## [KO]
+   * XML과 JSON 응답을 처리하는 메서드입니다.
+   *
+   * ## [EN]
+   * Method to handle XML and JSON responses.
+   */
+  private async getResponseBodyWithJsonForm<T>(
+    contentType: DartResponseContentType,
+    data: ArrayBuffer
+  ): Promise<Exclude<T, string>> {
+    if (contentType === dartResponseContentType.XML) {
+      const xmlString = new TextDecoder("utf-8").decode(data);
+      return this.xmlParser.parse(xmlString).result;
+    }
+
+    if (contentType === dartResponseContentType.JSON) {
+      const jsonString = new TextDecoder("utf-8").decode(data);
+      return JSON.parse(jsonString);
+    }
+
+    throw new DartError(`Unsupported content type: ${contentType}`, data);
+  }
+
+  /**
+   * ## [KO]
+   * 응답의 Content-Type을 추출하는 메서드입니다.
+   *
+   * ## [EN]
+   * Method to extract the Content-Type from the response.
+   */
+  private extractResponseContentType(
+    response: AxiosResponse
+  ): DartResponseContentType {
+    const contentTypeHeader = response.headers["content-type"];
+
+    if (contentTypeHeader.includes("application/json")) {
+      return dartResponseContentType.JSON;
+    } else if (contentTypeHeader.includes("application/xml")) {
+      return dartResponseContentType.XML;
+    } else if (contentTypeHeader.includes("x-msdownload")) {
+      return dartResponseContentType.X_MSDOWLOAD;
+    } else {
+      throw new DartError(
+        `Unsupported content type: ${contentTypeHeader}`,
+        response.headers
+      );
+    }
   }
 
   /**
