@@ -35,7 +35,7 @@ export class DartDisclosureInfo extends DartBase {
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001
    */
-  public async searchDisclosures<TRaw extends boolean = false>(
+  public async searchDisclosures<TRaw extends boolean = true>(
     params: SearchDisclosuresParams,
     options?: DartMethodOptions<TRaw>
   ): Promise<
@@ -43,6 +43,8 @@ export class DartDisclosureInfo extends DartBase {
       ? SearchDisclosuresResponse<RawDisclosure>
       : SearchDisclosuresResponse<Disclosure>
   > {
+    const filledOptions = this.getMethodOptions(options);
+
     const response = await this.get<SearchDisclosuresResponse<RawDisclosure>>(
       "/list.json",
       {
@@ -60,7 +62,7 @@ export class DartDisclosureInfo extends DartBase {
       }
     );
 
-    if (options?.raw) {
+    if (filledOptions.raw) {
       return response as SearchDisclosuresResponse<RawDisclosure> as any;
     }
 
@@ -84,7 +86,7 @@ export class DartDisclosureInfo extends DartBase {
    * @param corp_code - [KO]기업 고유번호: 공시대상회사의 고유번호(8자리)
    * @param corp_code - [EN]Corporation code: Corporation code of disclosing company (8 digits)
    */
-  public async getOverviewOfCorporate<TRaw extends boolean = false>(
+  public async getOverviewOfCorporate<TRaw extends boolean = true>(
     corp_code: string,
     options?: DartMethodOptions<TRaw>
   ): Promise<
@@ -92,13 +94,15 @@ export class DartDisclosureInfo extends DartBase {
       ? GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
       : GetOverviewOfCorporateResponse<CorporateStatusOverview>
   > {
+    const filledOptions = this.getMethodOptions(options);
+
     const response = await this.get<
       GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
     >("/company.json", {
       corp_code,
     });
 
-    if (options?.raw) {
+    if (filledOptions.raw) {
       return response as GetOverviewOfCorporateResponse<RawCorporateStatusOverview> as any;
     }
 

@@ -2,6 +2,7 @@ import { Axios } from "axios";
 import { DartOptions } from "../types/DartOptions";
 import { DartExceptionResponse, DartResponse } from "../types/DartResponse";
 import { DartException } from "../exceptions/DartException";
+import { DartMethodOptions } from "../types/DartMethodOptions";
 
 export abstract class DartBase {
   private readonly API_KEY: string;
@@ -86,5 +87,20 @@ export abstract class DartBase {
     response: DartResponse<T>
   ): response is DartExceptionResponse {
     return response.status !== "000";
+  }
+
+  /**
+   * ## [KO]
+   * `DartMethodOptions`의 기본 옵션 값을 정해주는 메서드입니다.
+   *
+   * ## [EN]
+   * Method to set the default option values for `DartMethodOptions`.
+   */
+  protected getMethodOptions<T extends boolean = true>(
+    options?: DartMethodOptions<T>
+  ): Required<DartMethodOptions<T>> {
+    return {
+      raw: options?.raw ?? (true as T),
+    };
   }
 }

@@ -12,7 +12,7 @@ export type DartMethodOptions<T extends boolean> = {
    * `true` processes the API response to match the Typescript type.
    * `false` returns all responses as the original string type received from the API.
    *
-   * @default false
+   * @default true
    */
   raw?: T;
 };
