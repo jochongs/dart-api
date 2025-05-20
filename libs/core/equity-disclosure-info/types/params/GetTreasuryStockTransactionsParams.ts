@@ -2,16 +2,14 @@ import { ReportCodeType } from "../ReportCodeType";
 
 /**
  * ## [KO]
- * `getDividendInfo` 요청 인자
  *
- * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019005#:~:text=XML-,%EC%9A%94%EC%B2%AD,-%EC%9D%B8%EC%9E%90
+ * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019006#:~:text=XML-,%EC%9A%94%EC%B2%AD,-%EC%9D%B8%EC%9E%90
  *
  * ## [EN]
- * `getDividendInfo` request parameters
  *
- * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00006#:~:text=XML-,Requested,-variables
+ * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00007#:~:text=XML-,Requested,-variables
  */
-export interface GetDividendInfoParams {
+export interface GetTreasuryStockTransactionsParams {
   /**
    * ## [KO] - 고유번호
    * 공시대상회사의 고유번호(8자리)
