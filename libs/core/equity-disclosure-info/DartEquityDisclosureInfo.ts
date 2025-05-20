@@ -3,6 +3,7 @@ import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
+import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
 
@@ -99,6 +100,25 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<MajorShareholderStatus>> {
     return await this.get<BasicPeriodicReportsResponse<MajorShareholderStatus>>(
       "hyslrSttus.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 최대주주 변동현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 최대주주 변동현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019008
+   *
+   * ## [EN] - Changes of the largest shareholder
+   * Changes of the largest shareholder is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00009
+   */
+  public async getMajorShareholderChange(params: BasicPeriodicReportsParams) {
+    return await this.get<BasicPeriodicReportsResponse<MajorShareholderChange>>(
+      "hyslrChgSttus.json",
       params
     );
   }
