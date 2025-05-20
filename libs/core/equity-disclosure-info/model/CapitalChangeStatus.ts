@@ -1,5 +1,14 @@
 import { DartMarketType } from "../../../types/DartMarketType";
 
+/**
+ * ## [KO] - 증자(감자) 현황
+ *
+ * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019004
+ *
+ * ## [EN] - Status of capital increase (reduction)
+ *
+ * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00005
+ */
 export interface CapitalChangeStatus {
   /**
    * ## [KO] - 접수번호(14자리)

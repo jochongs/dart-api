@@ -1,5 +1,14 @@
 import { DartMarketType } from "../../../types/DartMarketType";
 
+/**
+ * ## [KO] - 배당에 관한 사항
+ *
+ * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019005
+ *
+ * ## [EN] - Dividend information
+ *
+ * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00006
+ */
 export interface DividendInfo {
   /**
    * ## [KO] - 접수번호(14자리)
