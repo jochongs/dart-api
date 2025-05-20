@@ -1,4 +1,3 @@
-import { DartMethodOptions } from "../../types/DartMethodOptions";
 import { DartBase } from "../DartBase";
 import { GetCapitalChangeStatusParams } from "./types/params/GetCapitalChangeStatusParams";
 import { GetDividendInfoParams } from "./types/params/GetDividendInfoParams";
