@@ -130,4 +130,19 @@ export class DartDisclosureInfo extends DartBase {
 
     return response;
   }
+
+  /**
+   * ## [KO] - 공시 고유번호
+   * DART에 등록되어있는 공시대상회사의 고유번호,회사명,종목코드, 최근변경일자를 파일로 제공합니다.
+   *
+   * ## [EN] - Disclosure Corporation code
+   * The corporation code, company name, item code,
+   * and date of the latest change for a company subject to disclosure
+   * and registered with DART are provided in file form.
+   */
+  public async getDisclosureCorporationCode(): Promise<ArrayBuffer> {
+    const response = await this.get<ArrayBuffer>("/corpCode.xml");
+
+    return response;
+  }
 }
