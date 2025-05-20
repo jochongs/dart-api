@@ -1,10 +1,10 @@
 import { DartBase } from "../DartBase";
-import { GetCapitalChangeStatusParams } from "./types/params/GetCapitalChangeStatusParams";
-import { GetDividendInfoParams } from "./types/params/GetDividendInfoParams";
-import { GetTreasuryStockStatusParams } from "./types/params/GetTreasuryStockStatusParams";
-import { GetCapitalChangeStatusResponse } from "./types/response/GetCapitalChangeStatusResponse";
-import { GetDividendInfoResponse } from "./types/response/GetDividendInfoResponse";
-import { GetTreasuryStockStatusResponse } from "./types/response/GetTreasuryStockStatusResponse";
+import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
+import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
+import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
+import { DividendInfo } from "./types/model/DividendInfo";
+import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
+import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
 
 /**
  * ## [KO]
@@ -31,13 +31,12 @@ export class DartEquityDisclosureInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00005
    */
   public async getCapitalChangeStatus(
-    params: GetCapitalChangeStatusParams
-  ): Promise<GetCapitalChangeStatusResponse> {
-    return await this.get<GetCapitalChangeStatusResponse>("irdsSttus.json", {
-      corp_code: params.corp_code,
-      bsns_year: params.bsns_year,
-      reprt_code: params.reprt_code,
-    });
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<CapitalChangeStatus>> {
+    return await this.get<BasicPeriodicReportsResponse<CapitalChangeStatus>>(
+      "irdsSttus.json",
+      params
+    );
   }
 
   /**
@@ -53,13 +52,12 @@ export class DartEquityDisclosureInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00006
    */
   public async getDividendInfo(
-    params: GetDividendInfoParams
-  ): Promise<GetDividendInfoResponse> {
-    return await this.get<GetDividendInfoResponse>("alotMatter.json", {
-      corp_code: params.corp_code,
-      bsns_year: params.bsns_year,
-      reprt_code: params.reprt_code,
-    });
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<DividendInfo>> {
+    return await this.get<BasicPeriodicReportsResponse<DividendInfo>>(
+      "alotMatter.json",
+      params
+    );
   }
 
   /**
@@ -76,15 +74,32 @@ export class DartEquityDisclosureInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00007
    */
   public async getTreasuryStockStatus(
-    params: GetTreasuryStockStatusParams
-  ): Promise<GetTreasuryStockStatusResponse> {
-    return await this.get<GetTreasuryStockStatusResponse>(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<TreasuryStockStatus>> {
+    return await this.get<BasicPeriodicReportsResponse<TreasuryStockStatus>>(
       "tesstkAcqsDspsSttus.json",
-      {
-        corp_code: params.corp_code,
-        bsns_year: params.bsns_year,
-        reprt_code: params.reprt_code,
-      }
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 최대주주 현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 최대주주 현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019007
+   *
+   * ## [EN] - Information on largest shareholder
+   * Information on largest shareholder is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00008
+   */
+  public async getMajorShareholderStatus(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<MajorShareholderStatus>> {
+    return await this.get<BasicPeriodicReportsResponse<MajorShareholderStatus>>(
+      "irdsSttus.json",
+      params
     );
   }
 }

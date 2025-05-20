@@ -1,3 +1,5 @@
+import { BasicPeriodicReportsInfo } from "./BasicPeriodicReportsInfo";
+
 /**
  * ## [KO] - 자기주식 취득 및 처분 현황
  *
@@ -7,47 +9,7 @@
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00007
  */
-export interface TreasuryStockStatus {
-  /**
-   * ## [KO] - 접수번호(14자리)
-   *
-   * ※ 공시뷰어 연결에 이용예시
-   * - PC용 : https://dart.fss.or.kr/dsaf001/main.do?rcpNo=접수번호
-   *
-   * ## [EN] - Filing No. (14 digits)
-   *
-   * ※ Example link to Disclosure Viewer
-   * - For PCs: https://englishdart.fss.or.kr/dsbh001/main.do?rcpNo=FilingNumber
-   */
-  rcept_no: string;
-
-  /**
-   * ## [KO] - 법인구분
-   * 법인구분 : Y(유가), K(코스닥), N(코넥스), E(기타)
-   *
-   * ## [EN] - Corporation type
-   * Corporation type: Y (KOSPI), K (KOSDAQ), N (KONEX), E (Other)
-   */
-  corp_cls: string;
-
-  /**
-   * ## [KO] - 고유번호
-   * 공시대상회사의 고유번호(8자리)
-   *
-   * ## [EN] - Corporation code
-   * Corporation code of disclosing company (8 digits)
-   */
-  corp_code: string;
-
-  /**
-   * ## [KO] - 법인명
-   * 법인명
-   *
-   * ## [EN] - Corporation name
-   * Corporation name
-   */
-  corp_name: string;
-
+export interface TreasuryStockStatus extends BasicPeriodicReportsInfo {
   /**
    * ## [KO] - 취득방법 대분류
    * 배당가능이익범위 이내 취득, 기타취득, 총계 등
