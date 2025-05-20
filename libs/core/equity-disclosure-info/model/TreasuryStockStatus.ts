@@ -7,7 +7,7 @@
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00007
  */
-export interface TreasuryStockTransaction {
+export interface TreasuryStockStatus {
   /**
    * ## [KO] - 접수번호(14자리)
    *

@@ -5,7 +5,7 @@ import { GetDividendInfoParams } from "./types/params/GetDividendInfoParams";
 import { GetTreasuryStockTransactionsParams } from "./types/params/GetTreasuryStockTransactionsParams";
 import { GetCapitalChangeStatusResponse } from "./types/response/GetCapitalChangeStatusResponse";
 import { GetDividendInfoResponse } from "./types/response/GetDividendInfoResponse";
-import { GetTreasuryStockTransactionsResponse } from "./types/response/GetTreasuryStockTransactionsResponse";
+import { GetTreasuryStockStatusResponse } from "./types/response/GetTreasuryStockStatusResponse";
 
 /**
  * ## [KO]
@@ -76,10 +76,10 @@ export class DartEquityDisclosureInfo extends DartBase {
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00007
    */
-  public async getTreasuryStockTransactions(
+  public async getTreasuryStockStatus(
     params: GetTreasuryStockTransactionsParams
-  ): Promise<GetTreasuryStockTransactionsResponse> {
-    return await this.get<GetTreasuryStockTransactionsResponse>(
+  ): Promise<GetTreasuryStockStatusResponse> {
+    return await this.get<GetTreasuryStockStatusResponse>(
       "tesstkAcqsDspsSttus.json",
       {
         corp_code: params.corp_code,
