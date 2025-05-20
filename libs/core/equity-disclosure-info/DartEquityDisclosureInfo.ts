@@ -98,7 +98,7 @@ export class DartEquityDisclosureInfo extends DartBase {
     params: BasicPeriodicReportsParams
   ): Promise<BasicPeriodicReportsResponse<MajorShareholderStatus>> {
     return await this.get<BasicPeriodicReportsResponse<MajorShareholderStatus>>(
-      "irdsSttus.json",
+      "hyslrSttus.json",
       params
     );
   }
