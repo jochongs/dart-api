@@ -21,9 +21,13 @@ export class DartEquityDisclosureInfo extends DartBase {
    * ## KO - 증자(감자) 현황
    * 정기보고서(사업, 분기, 반기보고서) 내에 증자(감자) 현황을 제공합니다.
    *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019004
+   *
    * ## EN - Status of capital increase (reduction)
    * Status of capital increase (reduction) is provided
    * in the periodic reports (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00005
    */
   public async getCapitalChangeStatus(
     params: GetCapitalChangeStatusParams
@@ -39,9 +43,13 @@ export class DartEquityDisclosureInfo extends DartBase {
    * ## [KO] - 배당에 관한 사항
    * 정기보고서(사업, 분기, 반기보고서) 내에 배당에 관한 사항을 제공합니다.
    *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019005
+   *
    * ## [EN] - Matters related to dividends
    * Matters related to dividends are provided in the periodic reports
    * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00006
    */
   public async getDividendInfo(
     params: GetDividendInfoParams
