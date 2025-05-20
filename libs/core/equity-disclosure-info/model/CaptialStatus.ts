@@ -1,7 +1,7 @@
 import { DartMarketType } from "../../../types/DartMarketType";
 import { Stringify } from "../../../types/Stringify";
 
-export class CapitalChangeStatus {
+export interface CapitalChangeStatus {
   /**
    * ## [KO]
    * 접수번호(14자리)
@@ -15,7 +15,7 @@ export class CapitalChangeStatus {
    * ※ Example link to Disclosure Viewer
    * - For PCs: https://englishdart.fss.or.kr/dsbh001/main.do?rcpNo=FilingNumber
    */
-  public rcept_no: string;
+  rcept_no: string;
 
   /**
    * ## [KO]
@@ -28,7 +28,7 @@ export class CapitalChangeStatus {
    *
    * Corporation type: Y (KOSPI), K (KOSDAQ), N (KONEX), E (Other)
    */
-  public corp_cls: DartMarketType;
+  corp_cls: DartMarketType;
 
   /**
    * ## [KO]
@@ -41,7 +41,7 @@ export class CapitalChangeStatus {
    *
    * Corporation code of disclosing company (8 digits)
    */
-  public corp_code: string;
+  corp_code: string;
 
   /**
    * ## [KO]
@@ -50,7 +50,7 @@ export class CapitalChangeStatus {
    * ## [EN]
    * Corporation name
    */
-  public corp_name: string;
+  corp_name: string;
 
   /**
    * ## [KO]
@@ -59,7 +59,7 @@ export class CapitalChangeStatus {
    * ## [EN]
    * Stock issuance(reduction) date
    */
-  public isu_dcrs_de: string;
+  isu_dcrs_de: string;
 
   /**
    * ## [KO]
@@ -68,7 +68,7 @@ export class CapitalChangeStatus {
    * ## [EN]
    * Issuance(reduction) type
    */
-  public isu_dcrs_stle: string;
+  isu_dcrs_stle: string;
 
   /**
    * ## [KO]
@@ -77,7 +77,7 @@ export class CapitalChangeStatus {
    * ## [EN]
    * Details of issued (reduced) stocks ( Class of Shares )
    */
-  public isu_dcrs_stock_knd: string;
+  isu_dcrs_stock_knd: string;
 
   /**
    * ## [KO]
@@ -88,7 +88,7 @@ export class CapitalChangeStatus {
    *
    * @example "9,999,999,999"
    */
-  public isu_dcrs_qy: string;
+  isu_dcrs_qy: string;
 
   /**
    * ## [KO]
@@ -99,7 +99,7 @@ export class CapitalChangeStatus {
    *
    * @example "9,999,999,999"
    */
-  public isu_dcrs_mstvdv_fval_amount: string;
+  isu_dcrs_mstvdv_fval_amount: string;
 
   /**
    * ## [KO]
@@ -110,7 +110,7 @@ export class CapitalChangeStatus {
    *
    * @example "9,999,999,999"
    */
-  public isu_dcrs_mstvdv_amount: string;
+  isu_dcrs_mstvdv_amount: string;
 
   /**
    * ## [KO]
@@ -121,19 +121,5 @@ export class CapitalChangeStatus {
    *
    * YYYY.MM.DD
    */
-  public stlm_dt: string;
-
-  constructor(data: CapitalChangeStatus) {
-    this.rcept_no = data.rcept_no;
-    this.corp_cls = data.corp_cls;
-    this.corp_code = data.corp_code;
-    this.corp_name = data.corp_name;
-    this.isu_dcrs_de = data.isu_dcrs_de;
-    this.isu_dcrs_stle = data.isu_dcrs_stle;
-    this.isu_dcrs_stock_knd = data.isu_dcrs_stock_knd;
-    this.isu_dcrs_qy = data.isu_dcrs_qy;
-    this.isu_dcrs_mstvdv_fval_amount = data.isu_dcrs_mstvdv_fval_amount;
-    this.isu_dcrs_mstvdv_amount = data.isu_dcrs_mstvdv_amount;
-    this.stlm_dt = data.stlm_dt;
-  }
+  stlm_dt: string;
 }
