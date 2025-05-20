@@ -1,5 +1,4 @@
 import { DartMarketType } from "../../../types/DartMarketType";
-import { Stringify } from "../../../types/Stringify";
 
 export interface CapitalChangeStatus {
   /**
