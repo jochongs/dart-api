@@ -80,7 +80,7 @@ export class DartEquityDisclosureInfo extends DartBase {
     params: GetTreasuryStockTransactionsParams
   ): Promise<GetTreasuryStockTransactionsResponse> {
     return await this.get<GetTreasuryStockTransactionsResponse>(
-      "tesstkAcqsDspsSttus.json.json",
+      "tesstkAcqsDspsSttus.json",
       {
         corp_code: params.corp_code,
         bsns_year: params.bsns_year,
