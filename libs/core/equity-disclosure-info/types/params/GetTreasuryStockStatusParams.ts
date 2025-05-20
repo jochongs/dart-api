@@ -2,14 +2,16 @@ import { ReportCodeType } from "../ReportCodeType";
 
 /**
  * ## [KO]
+ * `getTreasuryStockStatus` 메서드 요청 파라미터
  *
  * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019006#:~:text=XML-,%EC%9A%94%EC%B2%AD,-%EC%9D%B8%EC%9E%90
  *
  * ## [EN]
+ * `getTreasuryStockStatus` request parameters
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00007#:~:text=XML-,Requested,-variables
  */
-export interface GetTreasuryStockTransactionsParams {
+export interface GetTreasuryStockStatusParams {
   /**
    * ## [KO] - 고유번호
    * 공시대상회사의 고유번호(8자리)

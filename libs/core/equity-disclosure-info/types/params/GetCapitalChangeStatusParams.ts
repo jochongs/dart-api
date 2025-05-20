@@ -2,12 +2,12 @@ import { ReportCodeType } from "../ReportCodeType";
 
 /**
  * ## [KO]
- * 증자(감자) 현황 요청 인자
+ * `getCapitalChangeStatus` 메서드 요청 파라미터
  *
  * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019004#:~:text=XML-,%EC%9A%94%EC%B2%AD,-%EC%9D%B8%EC%9E%90
  *
  * ## [EN]
- * Capital increase (reduction) status request parameters
+ * `getCapitalChangeStatus` request parameters
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00005#:~:text=XML-,Requested,-variables
  */
