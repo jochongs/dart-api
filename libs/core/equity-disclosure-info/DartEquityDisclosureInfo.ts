@@ -9,6 +9,7 @@ import { IndividualDirectorCompensation } from "./types/model/IndividualDirector
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
+import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensation";
 import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
 
 /**
@@ -207,5 +208,25 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<IndividualDirectorCompensation>
     >("hmvAuditIndvdlBySttus.json", params);
+  }
+
+  /**
+   * ## [KO] -	이사·감사 전체의 보수현황(보수지급금액 - 이사·감사 전체)
+   * 정기보고서(사업, 분기, 반기보고서) 내에 이사·감사 전체의 보수현황(보수지급금액 - 이사·감사 전체)을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019013
+   *
+   * ## [EN] - Remuneration for all directors and auditors
+   * Remuneration for all directors and auditors is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00014
+   */
+  public async getTotalDirectorCompensation(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<TotalDirectorCompensation>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<TotalDirectorCompensation>
+    >("hmvAuditAllSttus.json", params);
   }
 }
