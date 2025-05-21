@@ -1,3 +1,5 @@
+import { BasicPeriodicReportsInfo } from "./BasicPeriodicReportsInfo";
+
 /**
  * ## [KO] - 임원 현황
  *
@@ -7,7 +9,7 @@
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00011
  */
-export interface ExecutiveStatus {
+export interface ExecutiveStatus extends BasicPeriodicReportsInfo {
   /**
    * ## [KO] - 성명
    * 홍길동

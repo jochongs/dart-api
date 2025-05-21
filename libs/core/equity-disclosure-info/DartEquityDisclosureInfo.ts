@@ -3,6 +3,7 @@ import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
+import { EmployeeStatus } from "./types/model/EmployeeStatus";
 import { ExecutiveStatus } from "./types/model/ExecutiveStatus";
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
@@ -162,6 +163,27 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<ExecutiveStatus>> {
     return await this.get<BasicPeriodicReportsResponse<ExecutiveStatus>>(
       "exctvSttus.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 직원 현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 직원 현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019011
+   *
+   * ## [EN] - Status of staff
+   * Status of staff is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00012
+   */
+  public async getEmployeeStatus(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<EmployeeStatus>> {
+    return await this.get<BasicPeriodicReportsResponse<EmployeeStatus>>(
+      "empSttus.json",
       params
     );
   }
