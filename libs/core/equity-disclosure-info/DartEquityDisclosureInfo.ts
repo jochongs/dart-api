@@ -5,6 +5,7 @@ import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
+import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
 import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
 
 /**
@@ -121,5 +122,25 @@ export class DartEquityDisclosureInfo extends DartBase {
       "hyslrChgSttus.json",
       params
     );
+  }
+
+  /**
+   * ## [KO] - 소액주주 현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 소액주주 현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019009
+   *
+   * ## EN - Information on minority shareholders
+   * Information on minority shareholders is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00010
+   */
+  public async getMinorShareholderStatus(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<MinorShareholderStatus>> {
+    return await this.get<
+      Promise<BasicPeriodicReportsResponse<MinorShareholderStatus>>
+    >("mrhlSttus.json", params);
   }
 }
