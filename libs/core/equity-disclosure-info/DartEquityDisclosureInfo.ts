@@ -3,6 +3,7 @@ import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
+import { ExecutiveStatus } from "./types/model/ExecutiveStatus";
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
@@ -142,5 +143,26 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       Promise<BasicPeriodicReportsResponse<MinorShareholderStatus>>
     >("mrhlSttus.json", params);
+  }
+
+  /**
+   * ## [KO] - 임원 현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 임원 현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019010
+   *
+   * ## [EN] - Status of executives
+   * Status of executives is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00011
+   */
+  public async getExecutiveStatus(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<ExecutiveStatus>> {
+    return await this.get<BasicPeriodicReportsResponse<ExecutiveStatus>>(
+      "exctvSttus.json",
+      params
+    );
   }
 }
