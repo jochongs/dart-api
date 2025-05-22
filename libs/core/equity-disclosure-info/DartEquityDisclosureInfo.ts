@@ -2,6 +2,7 @@ import { DartBase } from "../DartBase";
 import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
+import { DebtIssuanceStatus } from "./types/model/DebtIssuanceStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
 import { EmployeeStatus } from "./types/model/EmployeeStatus";
 import { ExecutiveStatus } from "./types/model/ExecutiveStatus";
@@ -290,6 +291,27 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<TotalStockStatus>> {
     return await this.get<BasicPeriodicReportsResponse<TotalStockStatus>>(
       "stockTotqySttus.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 채무증권 발행실적
+   * 정기보고서(사업, 분기, 반기보고서) 내에 채무증권 발행실적을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020003
+   *
+   * ## [EN] - Debt securities issuance performance
+   * Debt securities issuance performance is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00018
+   */
+  public async getDebtIssuanceStatus(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<DebtIssuanceStatus>> {
+    return await this.get<BasicPeriodicReportsResponse<DebtIssuanceStatus>>(
+      "detScritsIsuAcmslt.json",
       params
     );
   }
