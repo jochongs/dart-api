@@ -9,6 +9,7 @@ import { IndividualDirectorCompensation } from "./types/model/IndividualDirector
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
+import { Top5ExecutiveCompensation } from "./types/model/Top5ExecutiveCompensation";
 import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensation";
 import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
 
@@ -228,5 +229,25 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<TotalDirectorCompensation>
     >("hmvAuditAllSttus.json", params);
+  }
+
+  /**
+   * ## [KO] - 개인별 보수지급 금액(5억이상 상위5인)
+   * 정기보고서(사업, 분기, 반기보고서) 내에 개인별 보수지급 금액(5억이상 상위5인)을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019014
+   *
+   * ## [EN] - Individual remuneration amounts (top 5 over KRW 500 million)
+   * Individual remuneration amounts (top five over KRW 500 million) is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00015
+   */
+  public async getTop5ExecutiveCompensation(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<Top5ExecutiveCompensation>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<Top5ExecutiveCompensation>
+    >(`indvdlByPay.json`, params);
   }
 }
