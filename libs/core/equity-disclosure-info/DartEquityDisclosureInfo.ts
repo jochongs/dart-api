@@ -5,6 +5,7 @@ import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
 import { EmployeeStatus } from "./types/model/EmployeeStatus";
 import { ExecutiveStatus } from "./types/model/ExecutiveStatus";
+import { ExternalInvestmentStatus } from "./types/model/ExternalInvestmentStatus";
 import { IndividualDirectorCompensation } from "./types/model/IndividualDirectorCompensation";
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
@@ -249,5 +250,25 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<Top5ExecutiveCompensation>
     >(`indvdlByPay.json`, params);
+  }
+
+  /**
+   * ## [KO] - 타법인 출자현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 타법인 출자현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2019015
+   *
+   * ## [EN] - Investment in other corporations
+   * Investment in other corporations is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00016
+   */
+  public async getExternalInvestmentStatus(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<ExternalInvestmentStatus>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<ExternalInvestmentStatus>
+    >("otrCprInvstmntSttus.json", params);
   }
 }
