@@ -2,6 +2,7 @@ import { DartBase } from "../DartBase";
 import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
+import { CommercialPaperBalance } from "./types/model/CommercialPaperBalance";
 import { DebtIssuanceStatus } from "./types/model/DebtIssuanceStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
 import { EmployeeStatus } from "./types/model/EmployeeStatus";
@@ -312,6 +313,27 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<DebtIssuanceStatus>> {
     return await this.get<BasicPeriodicReportsResponse<DebtIssuanceStatus>>(
       "detScritsIsuAcmslt.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 기업어음증권 미상환 잔액
+   * 정기보고서(사업, 분기, 반기보고서) 내에 기업어음증권 미상환 잔액을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020004
+   *
+   * ## [EN] - Outstanding balance on commercial paper securities
+   * Outstanding balance on corporate commercial paper securities is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00019
+   */
+  public async getCommercialPaperBalance(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<CommercialPaperBalance>> {
+    return await this.get<BasicPeriodicReportsResponse<CommercialPaperBalance>>(
+      "entrprsBilScritsNrdmpBlce.json",
       params
     );
   }
