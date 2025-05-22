@@ -12,6 +12,7 @@ import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
 import { Top5ExecutiveCompensation } from "./types/model/Top5ExecutiveCompensation";
 import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensation";
+import { TotalStockStatus } from "./types/model/TotalStockStatus";
 import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
 
 /**
@@ -270,5 +271,26 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<ExternalInvestmentStatus>
     >("otrCprInvstmntSttus.json", params);
+  }
+
+  /**
+   * ## [KO] - 주식의 총수 현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 주식의총수현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020002
+   *
+   * ## [EN] - Status of total stock number
+   * Status of total number of shares is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00017
+   */
+  public async getTotalStockStatus(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<TotalStockStatus>> {
+    return await this.get<BasicPeriodicReportsResponse<TotalStockStatus>>(
+      "stockTotqySttus.json",
+      params
+    );
   }
 }
