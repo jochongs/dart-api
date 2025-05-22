@@ -23,7 +23,7 @@ export interface ExternalInvestmentStatus extends BasicPeriodicReportsInfo {
    * ## [KO] - 최초 취득 일자
    * 최초취득일자(YYYYMMDD)
    *
-   * ## [EN] - Date of initial acquisitiond
+   * ## [EN] - Date of initial acquisition
    * Date of original acquisition
    * (YYYYMMDD)
    */
