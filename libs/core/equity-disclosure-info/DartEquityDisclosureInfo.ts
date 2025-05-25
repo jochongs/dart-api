@@ -9,6 +9,7 @@ import { DividendInfo } from "./types/model/DividendInfo";
 import { EmployeeStatus } from "./types/model/EmployeeStatus";
 import { ExecutiveStatus } from "./types/model/ExecutiveStatus";
 import { ExternalInvestmentStatus } from "./types/model/ExternalInvestmentStatus";
+import { HybridBondBalance } from "./types/model/HybridBondBalance";
 import { IndividualDirectorCompensation } from "./types/model/IndividualDirectorCompensation";
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
@@ -378,6 +379,27 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<CorporateBondBalance>> {
     return await this.get<BasicPeriodicReportsResponse<CorporateBondBalance>>(
       "cprndNrdmpBlce.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 신종자본증권 미상환 잔액
+   * 정기보고서(사업, 분기, 반기보고서) 내에 신종자본증권 미상환 잔액을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020007
+   *
+   * ## [EN] - Outstanding balance on hybrid bonds
+   * Outstanding balance on hybrid bonds is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00022
+   */
+  public async getHybridBondBalance(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<HybridBondBalance>> {
+    return await this.get<BasicPeriodicReportsResponse<HybridBondBalance>>(
+      "newCaplScritsNrdmpBlce.json",
       params
     );
   }
