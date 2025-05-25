@@ -12,6 +12,7 @@ import { IndividualDirectorCompensation } from "./types/model/IndividualDirector
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
+import { ShortTermBondBalance } from "./types/model/ShortTermBondBalance";
 import { Top5ExecutiveCompensation } from "./types/model/Top5ExecutiveCompensation";
 import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensation";
 import { TotalStockStatus } from "./types/model/TotalStockStatus";
@@ -334,6 +335,26 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<CommercialPaperBalance>> {
     return await this.get<BasicPeriodicReportsResponse<CommercialPaperBalance>>(
       "entrprsBilScritsNrdmpBlce.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 단기사채 미상환 잔액
+   * 정기보고서(사업, 분기, 반기보고서) 내에 단기사채 미상환 잔액을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020005
+   *
+   * ## [EN] - Outstanding balance on short-term bonds
+   * Outstanding balance on short-term bonds is provided in the periodic reports (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00020
+   */
+  public async getShortTermBondBalance(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<ShortTermBondBalance>> {
+    return await this.get<BasicPeriodicReportsResponse<ShortTermBondBalance>>(
+      "srtpdPsndbtNrdmpBlce.json",
       params
     );
   }
