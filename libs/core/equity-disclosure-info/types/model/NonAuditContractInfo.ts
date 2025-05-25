@@ -1,0 +1,66 @@
+import { BasicPeriodicReportsInfo } from "./BasicPeriodicReportsInfo";
+
+export interface NonAuditContractInfo extends BasicPeriodicReportsInfo {
+  /**
+   * ## [KO] - 사업연도
+   * 사업연도(당기, 전기, 전전기)
+   *
+   * ## [EN] - Fiscal year
+   * Fiscal year (current term, previous term, term before previous)
+   */
+  bsns_year: string;
+
+  /**
+   * ## [KO] - 계약체결일
+   * 계약체결일
+   *
+   * ## [EN] - Contract date
+   * Contract date
+   */
+  cntrct_cncls_det: string;
+
+  /**
+   * ## [KO] - 용역내용
+   * 용역내용
+   *
+   * ## [EN] - Service details
+   * Service details
+   */
+  servc_cn: string;
+
+  /**
+   * ## [KO] - 용역수행기간
+   * 용역수행기간
+   *
+   * ## [EN] - Service performance period
+   * Service performance period
+   */
+  servc_exc_pd: string;
+
+  /**
+   * ## [KO] - 용역보수
+   * 용역보수
+   *
+   * ## [EN] - Service remuneration
+   * Service remuneration
+   */
+  servc_mendng: string;
+
+  /**
+   * ## [KO] - 비고
+   * 비고
+   *
+   * ## [EN] - Note
+   * Note
+   */
+  rm: string;
+
+  /**
+   * ## [KO] - 결산기준일
+   * YYYY-MM-DD
+   *
+   * ## [EN] - Settlement date
+   * YYYY-MM-DD
+   */
+  stlm_dt: string;
+}

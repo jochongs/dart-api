@@ -17,6 +17,7 @@ import { IndividualDirectorCompensation } from "./types/model/IndividualDirector
 import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
+import { NonAuditContractInfo } from "./types/model/NonAuditContractInfo";
 import { ShortTermBondBalance } from "./types/model/ShortTermBondBalance";
 import { Top5ExecutiveCompensation } from "./types/model/Top5ExecutiveCompensation";
 import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensation";
@@ -465,6 +466,27 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<AuditContractInfo>> {
     return await this.get<BasicPeriodicReportsResponse<AuditContractInfo>>(
       "adtServcCnclsSttus.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 회계감사인과의 비감사용역 계약체결 현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 회계감사인과의 비감사용역 계약체결 현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020011
+   *
+   * ## [EN] - Information on non-audit service contracts entered with external auditor
+   * Information on non-audit service contracts entered with external auditor is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00026
+   */
+  public async getNonAuditContractInfo(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<NonAuditContractInfo>> {
+    return await this.get<BasicPeriodicReportsResponse<NonAuditContractInfo>>(
+      "accnutAdtorNonAdtServcCnclsSttus.json",
       params
     );
   }
