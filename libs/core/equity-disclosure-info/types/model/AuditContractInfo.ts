@@ -1,5 +1,14 @@
 import { BasicPeriodicReportsInfo } from "./BasicPeriodicReportsInfo";
 
+/**
+ * ## [KO] - 감사용역체결현황
+ *
+ * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020010
+ *
+ * ## [EN] - Information on audit service contract entered
+ *
+ * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00025
+ */
 export interface AuditContractInfo extends BasicPeriodicReportsInfo {
   /**
    * ## [KO] - 사업연도
