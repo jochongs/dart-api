@@ -346,7 +346,8 @@ export class DartEquityDisclosureInfo extends DartBase {
    * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020005
    *
    * ## [EN] - Outstanding balance on short-term bonds
-   * Outstanding balance on short-term bonds is provided in the periodic reports (annual, quarterly, semi-annual reports).
+   * Outstanding balance on short-term bonds is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00020
    */
