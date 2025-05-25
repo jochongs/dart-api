@@ -3,6 +3,7 @@ import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { CommercialPaperBalance } from "./types/model/CommercialPaperBalance";
+import { ContingentCapitalBalance } from "./types/model/ContingentCapitalBalance";
 import { CorporateBondBalance } from "./types/model/CorporateBondBalance";
 import { DebtIssuanceStatus } from "./types/model/DebtIssuanceStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
@@ -402,5 +403,25 @@ export class DartEquityDisclosureInfo extends DartBase {
       "newCaplScritsNrdmpBlce.json",
       params
     );
+  }
+
+  /**
+   * ## [KO] - 조건부 자본증권 미상환 잔액
+   * 정기보고서(사업, 분기, 반기보고서) 내에 조건부 자본증권 미상환 잔액을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020008
+   *
+   * ## [EN] - Outstanding balance on contingent capital securities
+   * Outstanding balance on contingent capital securities is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00023
+   */
+  public async getContingentCapitalBalance(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<ContingentCapitalBalance>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<ContingentCapitalBalance>
+    >("cndlCaplScritsNrdmpBlce.json", params);
   }
 }
