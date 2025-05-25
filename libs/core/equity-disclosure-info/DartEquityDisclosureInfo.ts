@@ -1,6 +1,7 @@
 import { DartBase } from "../DartBase";
 import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
+import { AuditorNameAndOpinion } from "./types/model/AuditorNameAndOpinion";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { CommercialPaperBalance } from "./types/model/CommercialPaperBalance";
 import { ContingentCapitalBalance } from "./types/model/ContingentCapitalBalance";
@@ -423,5 +424,26 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<ContingentCapitalBalance>
     >("cndlCaplScritsNrdmpBlce.json", params);
+  }
+
+  /**
+   * ## [KO] - 회계감사인의 명칭 및 감사의견
+   * 정기보고서(사업, 분기, 반기보고서) 내에 회계감사인의 명칭 및 감사의견을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020009
+   *
+   * ## [EN] - Name of external auditor and audit opinion
+   * External auditor’s name and audit opinion are provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00024
+   */
+  public async getAuditorNameAndOpinion(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<AuditorNameAndOpinion>> {
+    return await this.get<BasicPeriodicReportsResponse<AuditorNameAndOpinion>>(
+      "accnutAdtorNmNdAdtOpinion.json",
+      params
+    );
   }
 }
