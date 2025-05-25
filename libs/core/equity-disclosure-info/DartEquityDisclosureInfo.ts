@@ -1,6 +1,7 @@
 import { DartBase } from "../DartBase";
 import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
+import { ApprovedDirectorCompensation } from "./types/model/ApprovedDirectorCompensation";
 import { AuditContractInfo } from "./types/model/AuditContractInfo";
 import { AuditorNameAndOpinion } from "./types/model/AuditorNameAndOpinion";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
@@ -532,5 +533,25 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<UnregisteredExecutiveCompensation>
     >("unrstExctvMendngSttus.json", params);
+  }
+
+  /**
+   * ## [KO] - 이사·감사 전체의 보수현황(주주총회 승인금액)
+   * 정기보고서(사업, 분기, 반기보고서) 내에 이사·감사 전체의 보수현황(주주총회 승인금액)을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020014
+   *
+   * ## [EN] - Remuneration for all directors and auditors (amount approved by the general shareholders' meeting)
+   * Remuneration for all directors and auditors (amount approved by the general shareholders' meeting) is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00029
+   */
+  public async getApprovedDirectorCompensation(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<ApprovedDirectorCompensation>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<ApprovedDirectorCompensation>
+    >("drctrAdtAllMendngSttusGmtsckConfmAmount.json", params);
   }
 }
