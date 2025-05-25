@@ -21,6 +21,7 @@ import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
 import { NonAuditContractInfo } from "./types/model/NonAuditContractInfo";
 import { OutsideDirectorStatus } from "./types/model/OutsideDirectorStatus";
+import { PrivatePlacementFundUsage } from "./types/model/PrivatePlacementFundUsage";
 import { PublicOfferingFundUsage } from "./types/model/PublicOfferingFundUsage";
 import { ShortTermBondBalance } from "./types/model/ShortTermBondBalance";
 import { Top5ExecutiveCompensation } from "./types/model/Top5ExecutiveCompensation";
@@ -594,5 +595,25 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<PublicOfferingFundUsage>
     >("pssrpCptalUseDtls.json", params);
+  }
+
+  /**
+   * ## [KO] - 사모자금의 사용내역
+   * 정기보고서(사업, 분기, 반기보고서) 내에 사모자금의 사용내역을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020017
+   *
+   * ## [EN] - Details of private placement fund usage
+   * Details of private placement fund usage is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00032
+   */
+  public async getPrivatePlacementFundUsage(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<PrivatePlacementFundUsage>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<PrivatePlacementFundUsage>
+    >("prvsrpCptalUseDtls.json", params);
   }
 }
