@@ -1,6 +1,7 @@
 import { DartBase } from "../DartBase";
 import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
+import { AuditContractInfo } from "./types/model/AuditContractInfo";
 import { AuditorNameAndOpinion } from "./types/model/AuditorNameAndOpinion";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { CommercialPaperBalance } from "./types/model/CommercialPaperBalance";
@@ -443,6 +444,27 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<AuditorNameAndOpinion>> {
     return await this.get<BasicPeriodicReportsResponse<AuditorNameAndOpinion>>(
       "accnutAdtorNmNdAdtOpinion.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 감사용역체결현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 감사용역체결현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020010
+   *
+   * ## [EN] - Information on audit service contract entered
+   * Information on audit service contract entered is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00025
+   */
+  public async getAuditContractInfo(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<AuditContractInfo>> {
+    return await this.get<BasicPeriodicReportsResponse<AuditContractInfo>>(
+      "adtServcCnclsSttus.json",
       params
     );
   }
