@@ -24,6 +24,7 @@ import { Top5ExecutiveCompensation } from "./types/model/Top5ExecutiveCompensati
 import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensation";
 import { TotalStockStatus } from "./types/model/TotalStockStatus";
 import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
+import { UnregisteredExecutiveCompensation } from "./types/model/UnregisteredExecutiveCompensation";
 
 /**
  * ## [KO]
@@ -511,5 +512,25 @@ export class DartEquityDisclosureInfo extends DartBase {
       "outcmpnyDrctrNdChangeSttus.json",
       params
     );
+  }
+
+  /**
+   * ## [KO] - 미등기임원 보수현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 미등기임원 보수현황을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020013
+   *
+   * ## [EN] - Remuneration for unregistered executives
+   * Remuneration for unregistered executives is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00028
+   */
+  public async getUnregisteredExecutiveCompensation(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<UnregisteredExecutiveCompensation>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<UnregisteredExecutiveCompensation>
+    >("unrstExctvMendngSttus.json", params);
   }
 }
