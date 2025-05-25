@@ -3,6 +3,7 @@ import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
 import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
 import { CapitalChangeStatus } from "./types/model/CapitalChangeStatus";
 import { CommercialPaperBalance } from "./types/model/CommercialPaperBalance";
+import { CorporateBondBalance } from "./types/model/CorporateBondBalance";
 import { DebtIssuanceStatus } from "./types/model/DebtIssuanceStatus";
 import { DividendInfo } from "./types/model/DividendInfo";
 import { EmployeeStatus } from "./types/model/EmployeeStatus";
@@ -356,6 +357,27 @@ export class DartEquityDisclosureInfo extends DartBase {
   ): Promise<BasicPeriodicReportsResponse<ShortTermBondBalance>> {
     return await this.get<BasicPeriodicReportsResponse<ShortTermBondBalance>>(
       "srtpdPsndbtNrdmpBlce.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 회사채 미상환 잔액
+   * 정기보고서(사업, 분기, 반기보고서) 내에 회사채 미상환 잔액을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020006
+   *
+   * ## [EN] - Outstanding balance on corporate bonds
+   * Outstanding balance on corporate bonds is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00021
+   */
+  async getCorporateBondBalance(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<CorporateBondBalance>> {
+    return await this.get<BasicPeriodicReportsResponse<CorporateBondBalance>>(
+      "cprndNrdmpBlce.json",
       params
     );
   }
