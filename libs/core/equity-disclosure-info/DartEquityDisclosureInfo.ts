@@ -373,7 +373,7 @@ export class DartEquityDisclosureInfo extends DartBase {
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00021
    */
-  async getCorporateBondBalance(
+  public async getCorporateBondBalance(
     params: BasicPeriodicReportsParams
   ): Promise<BasicPeriodicReportsResponse<CorporateBondBalance>> {
     return await this.get<BasicPeriodicReportsResponse<CorporateBondBalance>>(
