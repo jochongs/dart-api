@@ -1,5 +1,14 @@
 import { BasicPeriodicReportsInfo } from "./BasicPeriodicReportsInfo";
 
+/**
+ * ## [KO] - 신종자본증권 미상환 잔액
+ *
+ * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020007
+ *
+ * ## [EN] - Outstanding balance on hybrid bonds
+ *
+ * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00022
+ */
 export interface HybridBondBalance extends BasicPeriodicReportsInfo {
   /**
    * ## [KO] - 잔여만기
