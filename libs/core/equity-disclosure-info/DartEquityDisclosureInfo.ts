@@ -21,6 +21,7 @@ import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
 import { NonAuditContractInfo } from "./types/model/NonAuditContractInfo";
 import { OutsideDirectorStatus } from "./types/model/OutsideDirectorStatus";
+import { PublicOfferingFundUsage } from "./types/model/PublicOfferingFundUsage";
 import { ShortTermBondBalance } from "./types/model/ShortTermBondBalance";
 import { Top5ExecutiveCompensation } from "./types/model/Top5ExecutiveCompensation";
 import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensation";
@@ -573,5 +574,25 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<DirectorCompensationByType>
     >("drctrAdtAllMendngSttusMendngPymntamtTyCl.json", params);
+  }
+
+  /**
+   * ## [KO] - 공모자금의 사용내역
+   * 정기보고서(사업, 분기, 반기보고서) 내에 공모자금의 사용내역을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020016
+   *
+   * ## [EN] - Details of public offering fund usage
+   * Details of public offering fund usage is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00031
+   */
+  public async getPublicOfferingFundUsage(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<PublicOfferingFundUsage>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<PublicOfferingFundUsage>
+    >("pssrpCptalUseDtls.json", params);
   }
 }
