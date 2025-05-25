@@ -490,4 +490,11 @@ export class DartEquityDisclosureInfo extends DartBase {
       params
     );
   }
+
+  /**
+   * ## [KO] -
+   *
+   * ## [EN] -
+   */
+  public async getOutsideDirectorStatus(params: BasicPeriodicReportsParams) {}
 }

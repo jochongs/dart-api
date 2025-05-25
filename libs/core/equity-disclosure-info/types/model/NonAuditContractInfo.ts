@@ -1,5 +1,14 @@
 import { BasicPeriodicReportsInfo } from "./BasicPeriodicReportsInfo";
 
+/**
+ * ## [KO] - 회계감사인과의 비감사용역 계약체결 현황
+ *
+ * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020011
+ *
+ * ## [EN] - Information on non-audit service contracts entered with external auditor
+ *
+ * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00026
+ */
 export interface NonAuditContractInfo extends BasicPeriodicReportsInfo {
   /**
    * ## [KO] - 사업연도
