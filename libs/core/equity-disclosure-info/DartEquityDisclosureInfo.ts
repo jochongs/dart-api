@@ -9,6 +9,7 @@ import { CommercialPaperBalance } from "./types/model/CommercialPaperBalance";
 import { ContingentCapitalBalance } from "./types/model/ContingentCapitalBalance";
 import { CorporateBondBalance } from "./types/model/CorporateBondBalance";
 import { DebtIssuanceStatus } from "./types/model/DebtIssuanceStatus";
+import { DirectorCompensationByType } from "./types/model/DirectorCompensationByType";
 import { DividendInfo } from "./types/model/DividendInfo";
 import { EmployeeStatus } from "./types/model/EmployeeStatus";
 import { ExecutiveStatus } from "./types/model/ExecutiveStatus";
@@ -553,5 +554,24 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<ApprovedDirectorCompensation>
     >("drctrAdtAllMendngSttusGmtsckConfmAmount.json", params);
+  }
+
+  /**
+   * ## [KO] - 이사·감사 전체의 보수현황(보수지급금액 - 유형별)
+   * 정기보고서(사업, 분기, 반기보고서) 내에 이사·감사 전체의 보수현황(보수지급금액 - 유형별)을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020015
+   *
+   * ## [EN] - Remuneration for all directors and auditors (remuneration paid - by type)
+   * Remuneration for all directors and auditors (remuneration amounts paid - by type) is provided in the periodic reports (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00030
+   */
+  public async getDirectorCompensationByType(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<DirectorCompensationByType>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<DirectorCompensationByType>
+    >("drctrAdtAllMendngSttusMendngPymntamtTyCl.json", params);
   }
 }
