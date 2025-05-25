@@ -18,6 +18,7 @@ import { MajorShareholderChange } from "./types/model/MajorShareholderChange";
 import { MajorShareholderStatus } from "./types/model/MajorShareholderStatus";
 import { MinorShareholderStatus } from "./types/model/MinorShareholderStatus";
 import { NonAuditContractInfo } from "./types/model/NonAuditContractInfo";
+import { OutsideDirectorStatus } from "./types/model/OutsideDirectorStatus";
 import { ShortTermBondBalance } from "./types/model/ShortTermBondBalance";
 import { Top5ExecutiveCompensation } from "./types/model/Top5ExecutiveCompensation";
 import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensation";
@@ -492,9 +493,23 @@ export class DartEquityDisclosureInfo extends DartBase {
   }
 
   /**
-   * ## [KO] -
+   * ## [KO] - 사외이사 및 그 변동현황
+   * 정기보고서(사업, 분기, 반기보고서) 내에 사외이사 및 그 변동현황을 제공합니다.
    *
-   * ## [EN] -
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2020012
+   *
+   * ## [EN] - Outside directors and changes
+   * Outside directors and changes are provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00027
    */
-  public async getOutsideDirectorStatus(params: BasicPeriodicReportsParams) {}
+  public async getOutsideDirectorStatus(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<OutsideDirectorStatus>> {
+    return await this.get<BasicPeriodicReportsResponse<OutsideDirectorStatus>>(
+      "outcmpnyDrctrNdChangeSttus.json",
+      params
+    );
+  }
 }
