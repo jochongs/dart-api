@@ -1,4 +1,4 @@
-import { DartStatus } from "../../../types/DartStatus";
+import { DartStatus } from "../../../../types/DartStatus";
 
 /**
  * ## [KO] - 정기보고서 응답

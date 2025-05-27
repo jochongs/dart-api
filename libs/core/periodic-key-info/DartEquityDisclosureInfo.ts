@@ -1,6 +1,6 @@
 import { DartBase } from "../DartBase";
-import { BasicPeriodicReportsParams } from "./types/BasicPeriodicReportsParams";
-import { BasicPeriodicReportsResponse } from "./types/BasicPeriodicReportsResponse";
+import { BasicPeriodicReportsParams } from "./types/params/BasicPeriodicReportsParams";
+import { BasicPeriodicReportsResponse } from "./types/responses/BasicPeriodicReportsResponse";
 import { ApprovedDirectorCompensation } from "./types/model/ApprovedDirectorCompensation";
 import { AuditContractInfo } from "./types/model/AuditContractInfo";
 import { AuditorNameAndOpinion } from "./types/model/AuditorNameAndOpinion";

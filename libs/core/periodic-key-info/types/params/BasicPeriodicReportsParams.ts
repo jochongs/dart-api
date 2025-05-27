@@ -1,4 +1,4 @@
-import { DartRequestParams } from "../../../types/DartRequestParams";
+import { DartRequestParams } from "../../../../types/DartRequestParams";
 
 /**
  * ## [KO]
