@@ -1,13 +1,6 @@
 import { ReportCodeType } from "./ReportCodeType";
 
-/**
- * ## [KO]
- * `DartEquityDisclosureInfo` 메서드의 기본 파라미터 정보
- *
- * ## [EN]
- * Basic parameter information of `DartEquityDisclosureInfo` method
- */
-export interface BasicPeriodicReportsParams {
+export interface DartRequestParams {
   /**
    * ## [KO] - 고유번호
    * 공시대상회사의 고유번호(8자리)

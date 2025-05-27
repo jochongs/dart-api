@@ -41,7 +41,7 @@ import { UnregisteredExecutiveCompensation } from "./types/model/UnregisteredExe
  *
  * @link https://engopendart.fss.or.kr/guide/main.do?apiGrpCd=DE002
  */
-export class DartEquityDisclosureInfo extends DartBase {
+export class DartPeriodicKeyInfo extends DartBase {
   /**
    * ## KO - 증자(감자) 현황
    * 정기보고서(사업, 분기, 반기보고서) 내에 증자(감자) 현황을 제공합니다.
