@@ -1,9 +1,11 @@
 import { DartBase } from "../DartBase";
 import { AssetTransferOtherPutBackOption } from "./types/model/AssetTransferOtherPutBackOption";
 import { BankruptcyOccurrence } from "./types/model/BankruptcyOccurrence";
+import { RehabilitationProcedureApplication } from "./types/model/RehabilitationProcedureApplication";
 import { SuspensionOfBusiness } from "./types/model/SuspensionOfBusiness";
 import { GetAssetTransferOtherPutBackOptionParams } from "./types/params/GetAssetTransferOtherPutBackOptionParams";
 import { GetBankruptcyOccurrenceParams } from "./types/params/GetBankruptcyOccurrenceParams";
+import { GetRehabilitationProcedureApplicationParams } from "./types/params/GetRehabilitationProcedureApplicationParams";
 import { GetSuspensionOfBusinessParams } from "./types/params/GetSuspensionOfBusinessParams";
 import { BasicMajorIssuesInfoResponse } from "./types/responses/BasicMajorIssuesInfoResponse";
 
@@ -75,5 +77,25 @@ export class DartMajorIssuesInfo extends DartBase {
       "bsnSp.json",
       params
     );
+  }
+
+  /**
+   * ## [KO] - 회생절차 개시신청
+   * 주요사항보고서(회생절차 개시신청) 내에 주요 정보를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS005&apiId=2020021
+   *
+   * ## [EN] - Application for Commencement of Rehabilitation Procedures
+   * Main points are provided in the Report on Major Issues
+   * (Application for Commencement of Rehabilitation Procedures).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00045
+   */
+  public async getRehabilitationProcedureApplication(
+    params: GetRehabilitationProcedureApplicationParams
+  ): Promise<BasicMajorIssuesInfoResponse<RehabilitationProcedureApplication>> {
+    return await this.get<
+      BasicMajorIssuesInfoResponse<RehabilitationProcedureApplication>
+    >("ctrcvsBgrq.json", params);
   }
 }
