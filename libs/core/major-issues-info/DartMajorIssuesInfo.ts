@@ -1,6 +1,8 @@
 import { DartBase } from "../DartBase";
 import { AssetTransferOtherPutBackOption } from "./types/model/AssetTransferOtherPutBackOption";
+import { BankruptcyOccurrence } from "./types/model/BankruptcyOccurrence";
 import { GetAssetTransferOtherPutBackOptionParams } from "./types/params/GetAssetTransferOtherPutBackOptionParams";
+import { GetBankruptcyOccurrenceParams } from "./types/params/GetBankruptcyOccurrenceParams";
 import { BasicMajorIssuesInfoResponse } from "./types/responses/BasicMajorIssuesInfoResponse";
 
 /**
@@ -31,5 +33,25 @@ export class DartMajorIssuesInfo extends DartBase {
     return await this.get<
       BasicMajorIssuesInfoResponse<AssetTransferOtherPutBackOption>
     >("astInhtrfEtcPtbkOpt.json", params);
+  }
+
+  /**
+   * ## [KO] - 부도발생
+   * 주요사항보고서(부도발생) 내에 주요 정보를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS005&apiId=2020019
+   *
+   * ## [EN] - Bankruptcy Occurrence
+   * Main points are provided in the Report on Major Issues (Bankruptcy Occurrence).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00043
+   */
+  public async getBankruptcyOccurrence(
+    params: GetBankruptcyOccurrenceParams
+  ): Promise<BasicMajorIssuesInfoResponse<BankruptcyOccurrence>> {
+    return await this.get<BasicMajorIssuesInfoResponse<BankruptcyOccurrence>>(
+      "dfOcr.json",
+      params
+    );
   }
 }
