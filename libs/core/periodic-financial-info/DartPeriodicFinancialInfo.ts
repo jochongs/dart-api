@@ -1,8 +1,12 @@
 import { DartBase } from "../DartBase";
+import { IndicatorCategoryCode } from "./types/models/FinancialIndicatorsOfCompany";
+import { FinancialIndicesOfCompanies } from "./types/models/FinancialIndicesOfCompanies";
 import { FullFinancialStatements } from "./types/models/FullFinancialStatements";
 import { MultipleCompanyAccountInfo } from "./types/models/MultipleCompanyAccountInfo";
 import { SingleCompanyAccountInfo } from "./types/models/SingleCompanyAccountInfo";
 import { XbrlTaxonomyFormat } from "./types/models/XbrlTaxonomyFormat";
+import { GetFinancialIndicatorsOfCompanyParams } from "./types/params/GetFinancialIndicatorsOfCompanyParams";
+import { GetFinancialIndicesOfCompaniesParams } from "./types/params/GetFinancialIndicesOfCompaniesParams";
 import { GetFullFinancialStatementsParams } from "./types/params/getFullFinancialStatementsParams";
 import { GetOriginalFinancialStateFileParams } from "./types/params/GetOriginalFinancialStateFileParams";
 import { GetSingleCompanyAccountInfoParams } from "./types/params/GetSingleCompanyAccountInfoParams";
@@ -116,5 +120,41 @@ export class DartPeriodicFinancialInfo extends DartBase {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<XbrlTaxonomyFormat>
     >("xbrlTaxonomy.json", params);
+  }
+
+  /**
+   * ## [KO] - 단일회사 주요 재무지표
+   * 상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이 제출한 정기보고서 내에 XBRL재무제표의 주요 재무지표를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS003&apiId=2022001
+   *
+   * ## [EN] - Major financial indicators of a single company
+   * We provide the major financial indicators of the XBRL financial statements in the periodic reports submitted by listed corporations (KOSPI, KOSDAQ) and major unlisted corporations (required to submit annual reports and subject to IFRS).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00038
+   */
+  public async getFinancialIndicatorsOfCompany(
+    params: GetFinancialIndicatorsOfCompanyParams
+  ) {
+    return await this.get<
+      BasicPeriodicFinancialInfoResponse<IndicatorCategoryCode>
+    >("fnlttSinglIndx.json", params);
+  }
+
+  /**
+   * ## [KO] - 다중회사 주요 재무지표
+   * 상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이 제출한 정기보고서 내에 XBRL재무제표의 주요 재무지표를 제공합니다.(대상법인 복수조회 가능)
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS003&apiId=2022002
+   *
+   * ## [EN] - Major financial indices of multiple companies
+   * We provide the major financial indicators of the XBRL financial statements in the periodic reports submitted by listed corporations (KOSPI, KOSDAQ) and major unlisted corporations (required to submit annual reports and subject to IFRS). You can view multiple subject corporations.
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00039
+   */
+  public async getFinancialIndicesOfCompanies(
+    params: GetFinancialIndicesOfCompaniesParams
+  ): Promise<BasicPeriodicFinancialInfoResponse<FinancialIndicesOfCompanies>> {
+    return await this.get("fnlttCmpnyIndx.json", params);
   }
 }
