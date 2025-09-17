@@ -1,4 +1,4 @@
-import { DartModel } from "./DartModel";
+import { DartModel } from "../../../../types/DartModel";
 
 export interface CombinedCapitalIncreaseDecision extends DartModel {
   /**
