@@ -1,8 +1,10 @@
 import { DartBase } from "../DartBase";
 import { AssetTransferOtherPutBackOption } from "./types/model/AssetTransferOtherPutBackOption";
 import { BankruptcyOccurrence } from "./types/model/BankruptcyOccurrence";
+import { SuspensionOfBusiness } from "./types/model/SuspensionOfBusiness";
 import { GetAssetTransferOtherPutBackOptionParams } from "./types/params/GetAssetTransferOtherPutBackOptionParams";
 import { GetBankruptcyOccurrenceParams } from "./types/params/GetBankruptcyOccurrenceParams";
+import { GetSuspensionOfBusinessParams } from "./types/params/GetSuspensionOfBusinessParams";
 import { BasicMajorIssuesInfoResponse } from "./types/responses/BasicMajorIssuesInfoResponse";
 
 /**
@@ -51,6 +53,26 @@ export class DartMajorIssuesInfo extends DartBase {
   ): Promise<BasicMajorIssuesInfoResponse<BankruptcyOccurrence>> {
     return await this.get<BasicMajorIssuesInfoResponse<BankruptcyOccurrence>>(
       "dfOcr.json",
+      params
+    );
+  }
+
+  /**
+   * ## [KO] - 영업정지
+   * 주요사항보고서(영업정지) 내에 주요 정보를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS005&apiId=2020020
+   *
+   * ## [EN] - Suspension of Business
+   * Main points are provided in the Report on Major Issues (Suspension of Business).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00044
+   */
+  public async getSuspensionOfBusiness(
+    params: GetSuspensionOfBusinessParams
+  ): Promise<BasicMajorIssuesInfoResponse<SuspensionOfBusiness>> {
+    return await this.get<BasicMajorIssuesInfoResponse<SuspensionOfBusiness>>(
+      "bsnSp.json",
       params
     );
   }
