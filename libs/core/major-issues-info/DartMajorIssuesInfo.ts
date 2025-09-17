@@ -2,6 +2,7 @@ import { DartBase } from "../DartBase";
 import { AssetTransferOtherPutBackOption } from "./types/model/AssetTransferOtherPutBackOption";
 import { BankruptcyOccurrence } from "./types/model/BankruptcyOccurrence";
 import { BonusIssueDecision } from "./types/model/BonusIssueDecision";
+import { CombinedCapitalIncreaseDecision } from "./types/model/CombinedCapitalIncreaseDecision";
 import { DissolutionCauseOccurrence } from "./types/model/DissolutionCauseOccurrence";
 import { PaidInCapitalIncreaseDecision } from "./types/model/PaidInCapitalIncreaseDecision";
 import { RehabilitationProcedureApplication } from "./types/model/RehabilitationProcedureApplication";
@@ -9,6 +10,7 @@ import { SuspensionOfBusiness } from "./types/model/SuspensionOfBusiness";
 import { GetAssetTransferOtherPutBackOptionParams } from "./types/params/GetAssetTransferOtherPutBackOptionParams";
 import { GetBankruptcyOccurrenceParams } from "./types/params/GetBankruptcyOccurrenceParams";
 import { GetBonusIssueDecisionParams } from "./types/params/GetBonusIssueDecisionParams";
+import { GetCombinedCapitalIncreaseDecisionParams } from "./types/params/GetCombinedCapitalIncreaseDecisionParams";
 import { GetDissolutionCauseOccurrenceParams } from "./types/params/GetDissolutionCauseOccurrenceParams";
 import { GetPaidInCapitalIncreaseDecisionParams } from "./types/params/GetPaidInCapitalIncreaseDecisionParams";
 import { GetRehabilitationProcedureApplicationParams } from "./types/params/GetRehabilitationProcedureApplicationParams";
@@ -161,5 +163,25 @@ export class DartMajorIssuesInfo extends DartBase {
       "fricDecsn.json",
       params
     );
+  }
+
+  /**
+   * ## [KO] - 유무상증자 결정
+   * 주요사항보고서(유무상증자 결정) 내에 주요 정보를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS005&apiId=2020025
+   *
+   * ## [EN] - Decision on Paid-in Capital Increase/Capital Increase without Consideration
+   * Main points are provided in the Report on Major Issues
+   * (Decision on Paid-in Capital Increase/Capital Increase without Consideration).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00049
+   */
+  public async getCombinedCapitalIncreaseDecision(
+    params: GetCombinedCapitalIncreaseDecisionParams
+  ): Promise<BasicMajorIssuesInfoResponse<CombinedCapitalIncreaseDecision>> {
+    return await this.get<
+      BasicMajorIssuesInfoResponse<CombinedCapitalIncreaseDecision>
+    >("pifricDecsn.json", params);
   }
 }
