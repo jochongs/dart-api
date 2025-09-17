@@ -52,7 +52,7 @@ export class DartPeriodicFinancialInfo extends DartBase {
    */
   public async getMultipleCompanyAccountInfo(
     params: GetSingleCompanyAccountInfoParams
-  ) {
+  ): Promise<BasicPeriodicFinancialInfoResponse<MultipleCompanyAccountInfo>> {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<MultipleCompanyAccountInfo>
     >("fnlttMultiAcnt.json", params);
