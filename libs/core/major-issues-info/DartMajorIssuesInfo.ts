@@ -2,6 +2,7 @@ import { DartBase } from "../DartBase";
 import { AssetTransferOtherPutBackOption } from "./types/model/AssetTransferOtherPutBackOption";
 import { BankruptcyOccurrence } from "./types/model/BankruptcyOccurrence";
 import { BonusIssueDecision } from "./types/model/BonusIssueDecision";
+import { CapitalReductionDecision } from "./types/model/CapitalReductionDecision";
 import { CombinedCapitalIncreaseDecision } from "./types/model/CombinedCapitalIncreaseDecision";
 import { DissolutionCauseOccurrence } from "./types/model/DissolutionCauseOccurrence";
 import { PaidInCapitalIncreaseDecision } from "./types/model/PaidInCapitalIncreaseDecision";
@@ -10,6 +11,7 @@ import { SuspensionOfBusiness } from "./types/model/SuspensionOfBusiness";
 import { GetAssetTransferOtherPutBackOptionParams } from "./types/params/GetAssetTransferOtherPutBackOptionParams";
 import { GetBankruptcyOccurrenceParams } from "./types/params/GetBankruptcyOccurrenceParams";
 import { GetBonusIssueDecisionParams } from "./types/params/GetBonusIssueDecisionParams";
+import { GetCapitalReductionDecisionParams } from "./types/params/GetCapitalReductionDecisionParams";
 import { GetCombinedCapitalIncreaseDecisionParams } from "./types/params/GetCombinedCapitalIncreaseDecisionParams";
 import { GetDissolutionCauseOccurrenceParams } from "./types/params/GetDissolutionCauseOccurrenceParams";
 import { GetPaidInCapitalIncreaseDecisionParams } from "./types/params/GetPaidInCapitalIncreaseDecisionParams";
@@ -183,5 +185,24 @@ export class DartMajorIssuesInfo extends DartBase {
     return await this.get<
       BasicMajorIssuesInfoResponse<CombinedCapitalIncreaseDecision>
     >("pifricDecsn.json", params);
+  }
+
+  /**
+   * ## [KO] - 감자 결정
+   * 주요사항보고서(감자 결정) 내에 주요 정보를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS005&apiId=2020026
+   *
+   * ## [EN] - Decision on Capital Reduction
+   * Main points are provided in the Report on Major Issues (Decision on Capital Reduction).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00050
+   */
+  public async getCapitalReductionDecision(
+    params: GetCapitalReductionDecisionParams
+  ): Promise<BasicMajorIssuesInfoResponse<CapitalReductionDecision>> {
+    return await this.get<
+      BasicMajorIssuesInfoResponse<CapitalReductionDecision>
+    >("crDecsn.json", params);
   }
 }
