@@ -1,6 +1,7 @@
 import { DartBase } from "../DartBase";
 import { MultipleCompanyAccountInfo } from "./types/models/MultipleCompanyAccountInfo";
 import { SingleCompanyAccountInfo } from "./types/models/SingleCompanyAccountInfo";
+import { GetOriginalFinancialStateFileParams } from "./types/params/GetOriginalFinancialStateFileParams";
 import { GetSingleCompanyAccountInfoParams } from "./types/params/GetSingleCompanyAccountInfoParams";
 import { BasicPeriodicFinancialInfoResponse } from "./types/responses/BasicPeriodicFinancialInfoResponse";
 
@@ -56,5 +57,22 @@ export class DartPeriodicFinancialInfo extends DartBase {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<MultipleCompanyAccountInfo>
     >("fnlttMultiAcnt.json", params);
+  }
+
+  /**
+   * ## [KO] - 재무제표 원본파일(XBRL)
+   * 상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이 제출한 정기보고서 내에 XBRL재무제표의 원본파일(XBRL)을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS003&apiId=2019019
+   *
+   * ## [EN] - Original financial statement file (XBRL)
+   * The original XBRL financial statement file (XBRL) in the periodic reports submitted by a listed corporation is provided.
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00035
+   */
+  public async getOriginalFinancialStateFile(
+    params: GetOriginalFinancialStateFileParams
+  ) {
+    return await this.get<ArrayBuffer>("fnlttXbrl.xml", params);
   }
 }

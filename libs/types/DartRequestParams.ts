@@ -33,4 +33,13 @@ export interface DartRequestParams {
    * - 11011: Annual Report
    */
   reprt_code: ReportCodeType;
+
+  /**
+   * ## [KO] - 접수 번호
+   * 조회방법 : 공시검색API 호출 > 응답요청 값 rcept_no 추출
+   *
+   * ## [EN] - Filing No.
+   * How to view: Search disclosure API call > Extract requested response value rcept_no
+   */
+  rcept_no: string;
 }
