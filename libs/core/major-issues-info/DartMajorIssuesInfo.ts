@@ -2,11 +2,13 @@ import { DartBase } from "../DartBase";
 import { AssetTransferOtherPutBackOption } from "./types/model/AssetTransferOtherPutBackOption";
 import { BankruptcyOccurrence } from "./types/model/BankruptcyOccurrence";
 import { DissolutionCauseOccurrence } from "./types/model/DissolutionCauseOccurrence";
+import { PaidInCapitalIncreaseDecision } from "./types/model/PaidInCapitalIncreaseDecision";
 import { RehabilitationProcedureApplication } from "./types/model/RehabilitationProcedureApplication";
 import { SuspensionOfBusiness } from "./types/model/SuspensionOfBusiness";
 import { GetAssetTransferOtherPutBackOptionParams } from "./types/params/GetAssetTransferOtherPutBackOptionParams";
 import { GetBankruptcyOccurrenceParams } from "./types/params/GetBankruptcyOccurrenceParams";
 import { GetDissolutionCauseOccurrenceParams } from "./types/params/GetDissolutionCauseOccurrenceParams";
+import { GetPaidInCapitalIncreaseDecisionParams } from "./types/params/GetPaidInCapitalIncreaseDecisionParams";
 import { GetRehabilitationProcedureApplicationParams } from "./types/params/GetRehabilitationProcedureApplicationParams";
 import { GetSuspensionOfBusinessParams } from "./types/params/GetSuspensionOfBusinessParams";
 import { BasicMajorIssuesInfoResponse } from "./types/responses/BasicMajorIssuesInfoResponse";
@@ -118,5 +120,24 @@ export class DartMajorIssuesInfo extends DartBase {
     return await this.get<
       BasicMajorIssuesInfoResponse<DissolutionCauseOccurrence>
     >("dsRsOcr.json", params);
+  }
+
+  /**
+   * ## [KO] - 유상증자 결정
+   * 주요사항보고서(유상증자 결정) 내에 주요 정보를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS005&apiId=2020023
+   *
+   * ## [EN] - Decision of Paid-in Capital Increase
+   * Main points are provided in the Report on Major Issues (Decision of Paid-in Capital Increase).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00047
+   */
+  public async getPaidInCapitalIncreaseDecision(
+    params: GetPaidInCapitalIncreaseDecisionParams
+  ): Promise<BasicMajorIssuesInfoResponse<PaidInCapitalIncreaseDecision>> {
+    return await this.get<
+      BasicMajorIssuesInfoResponse<PaidInCapitalIncreaseDecision>
+    >("piicDecsn.json", params);
   }
 }
