@@ -1,3 +1,4 @@
+import { DartFinancialStatementType } from "./DartFinancialStatementType";
 import { ReportCodeType } from "./ReportCodeType";
 
 export interface DartRequestParams {
@@ -51,4 +52,11 @@ export interface DartRequestParams {
    * OFS:Financial statements, CFS:Consolidated financial statements
    */
   fs_div: "OFS" | "CFS";
+
+  /**
+   * ## [EN] - Type of financial statement
+   *
+   * ## [KO] - 재무제표구분
+   */
+  sj_div: DartFinancialStatementType;
 }

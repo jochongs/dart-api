@@ -2,9 +2,11 @@ import { DartBase } from "../DartBase";
 import { FullFinancialStatements } from "./types/models/FullFinancialStatements";
 import { MultipleCompanyAccountInfo } from "./types/models/MultipleCompanyAccountInfo";
 import { SingleCompanyAccountInfo } from "./types/models/SingleCompanyAccountInfo";
+import { XbrlTaxonomyFormat } from "./types/models/XbrlTaxonomyFormat";
 import { GetFullFinancialStatementsParams } from "./types/params/getFullFinancialStatementsParams";
 import { GetOriginalFinancialStateFileParams } from "./types/params/GetOriginalFinancialStateFileParams";
 import { GetSingleCompanyAccountInfoParams } from "./types/params/GetSingleCompanyAccountInfoParams";
+import { GetXbrlTaxonomyFormatParams } from "./types/params/GetXbrlTaxonomyFormatParams";
 import { BasicPeriodicFinancialInfoResponse } from "./types/responses/BasicPeriodicFinancialInfoResponse";
 
 /**
@@ -95,5 +97,24 @@ export class DartPeriodicFinancialInfo extends DartBase {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<FullFinancialStatements>
     >("fnlttSinglAcntAll.json", params);
+  }
+
+  /**
+   * ## [KO] - XBRL택사노미재무제표양식
+   * 금융감독원 회계포탈에서 제공하는 IFRS 기반 XBRL 재무제표 공시용 표준계정과목체계(계정과목) 을 제공합니다.
+   *
+   * @link
+   *
+   * ## [EN] - XBRL taxonomy financial statements format
+   * The standard account code system (title of account) for IFRS-based XBRL financial statement disclosure supplied by the accounting portal of the Financial Supervisory Service is provided.
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00037
+   */
+  public async getXbrlTaxonomyFormat(
+    params: GetXbrlTaxonomyFormatParams
+  ): Promise<BasicPeriodicFinancialInfoResponse<XbrlTaxonomyFormat>> {
+    return await this.get<
+      BasicPeriodicFinancialInfoResponse<XbrlTaxonomyFormat>
+    >("xbrlTaxonomy.json", params);
   }
 }
