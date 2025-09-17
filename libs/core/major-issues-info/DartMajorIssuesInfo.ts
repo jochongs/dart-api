@@ -1,10 +1,12 @@
 import { DartBase } from "../DartBase";
 import { AssetTransferOtherPutBackOption } from "./types/model/AssetTransferOtherPutBackOption";
 import { BankruptcyOccurrence } from "./types/model/BankruptcyOccurrence";
+import { DissolutionCauseOccurrence } from "./types/model/DissolutionCauseOccurrence";
 import { RehabilitationProcedureApplication } from "./types/model/RehabilitationProcedureApplication";
 import { SuspensionOfBusiness } from "./types/model/SuspensionOfBusiness";
 import { GetAssetTransferOtherPutBackOptionParams } from "./types/params/GetAssetTransferOtherPutBackOptionParams";
 import { GetBankruptcyOccurrenceParams } from "./types/params/GetBankruptcyOccurrenceParams";
+import { GetDissolutionCauseOccurrenceParams } from "./types/params/GetDissolutionCauseOccurrenceParams";
 import { GetRehabilitationProcedureApplicationParams } from "./types/params/GetRehabilitationProcedureApplicationParams";
 import { GetSuspensionOfBusinessParams } from "./types/params/GetSuspensionOfBusinessParams";
 import { BasicMajorIssuesInfoResponse } from "./types/responses/BasicMajorIssuesInfoResponse";
@@ -97,5 +99,24 @@ export class DartMajorIssuesInfo extends DartBase {
     return await this.get<
       BasicMajorIssuesInfoResponse<RehabilitationProcedureApplication>
     >("ctrcvsBgrq.json", params);
+  }
+
+  /**
+   * ## [KO] - 해산사유 발생
+   * 주요사항보고서(해산사유 발생) 내에 주요 정보를 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS005&apiId=2020022
+   *
+   * ## [EN] - Occurrence of Dissolution Cause
+   * Main points are provided in the Report on Major Issues (Occurrence of Dissolution Cause).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00046
+   */
+  public async getDissolutionCauseOccurrence(
+    params: GetDissolutionCauseOccurrenceParams
+  ): Promise<BasicMajorIssuesInfoResponse<DissolutionCauseOccurrence>> {
+    return await this.get<
+      BasicMajorIssuesInfoResponse<DissolutionCauseOccurrence>
+    >("dsRsOcr.json", params);
   }
 }
