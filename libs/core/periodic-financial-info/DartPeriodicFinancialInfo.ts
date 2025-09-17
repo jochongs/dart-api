@@ -1,6 +1,8 @@
 import { DartBase } from "../DartBase";
+import { FullFinancialStatements } from "./types/models/FullFinancialStatements";
 import { MultipleCompanyAccountInfo } from "./types/models/MultipleCompanyAccountInfo";
 import { SingleCompanyAccountInfo } from "./types/models/SingleCompanyAccountInfo";
+import { GetFullFinancialStatementsParams } from "./types/params/getFullFinancialStatementsParams";
 import { GetOriginalFinancialStateFileParams } from "./types/params/GetOriginalFinancialStateFileParams";
 import { GetSingleCompanyAccountInfoParams } from "./types/params/GetSingleCompanyAccountInfoParams";
 import { BasicPeriodicFinancialInfoResponse } from "./types/responses/BasicPeriodicFinancialInfoResponse";
@@ -72,7 +74,26 @@ export class DartPeriodicFinancialInfo extends DartBase {
    */
   public async getOriginalFinancialStateFile(
     params: GetOriginalFinancialStateFileParams
-  ) {
+  ): Promise<ArrayBuffer> {
     return await this.get<ArrayBuffer>("fnlttXbrl.xml", params);
+  }
+
+  /**
+   * ## [KO] - 단일회사 전체 재무제표
+   * 상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이 제출한 정기보고서 내에 XBRL재무제표의 모든계정과목을 제공합니다.
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS003&apiId=2019020
+   *
+   * ## [EN] - Single company’s full financial statements
+   * We provide all the titles of account (financial statements, income statements) of the XBRL financial statements in the periodic reports submitted by listed corporations (KOSPI, KOSDAQ) and major unlisted corporations (required to submit annual reports and subject to IFRS).
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00036
+   */
+  public async getFullFinancialStatements(
+    params: GetFullFinancialStatementsParams
+  ): Promise<BasicPeriodicFinancialInfoResponse<FullFinancialStatements>> {
+    return await this.get<
+      BasicPeriodicFinancialInfoResponse<FullFinancialStatements>
+    >("fnlttSinglAcntAll.json", params);
   }
 }

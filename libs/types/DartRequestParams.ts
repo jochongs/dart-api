@@ -42,4 +42,13 @@ export interface DartRequestParams {
    * How to view: Search disclosure API call > Extract requested response value rcept_no
    */
   rcept_no: string;
+
+  /**
+   * ## [KO] - 개별/연결구분
+   * OFS:재무제표, CFS:연결재무제표
+   *
+   * ## [EN]- Seperate/consolidated
+   * OFS:Financial statements, CFS:Consolidated financial statements
+   */
+  fs_div: "OFS" | "CFS";
 }
