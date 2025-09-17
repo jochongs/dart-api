@@ -1,5 +1,7 @@
 import { DartBase } from "../DartBase";
+import { ExecutiveMajorShareholderReport } from "./types/model/ExecutiveMajorShareholderReport";
 import { MajorShareholdingReport } from "./types/model/MajorShareholdingReport";
+import { GetExecutiveMajorShareholderReportParams } from "./types/params/GetExecutiveMajorShareholderReportParams";
 import { GetMajorShareholdingReportParams } from "./types/params/GetMajorShareholdingReportParams";
 import { BasicEquityDisclosureInfoResponse } from "./types/response/BasicEquityDisclosureInfoResponse";
 
@@ -30,5 +32,26 @@ export class DartEquityDisclosureInfo extends DartBase {
     return await this.get<
       Promise<BasicEquityDisclosureInfoResponse<MajorShareholdingReport>>
     >("majorstock.json", params);
+  }
+
+  /**
+   * ## [KO] - 임원ㆍ주요주주 소유보고
+   * 임원ㆍ주요주주특정증권등 소유상황보고서 내에 임원ㆍ주요주주 소유보고 정보를 제공합니다.
+   *
+   * @link
+   *
+   * ## [EN] - Report of executives and major shareholders’ ownership
+   * Report of executives and major shareholders’ ownership information is provided in the report on status of specific securities, etc. owned by executives and major shareholders.
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE004&apiId=AE00040
+   */
+  public async getExecutiveMajorShareholderReport(
+    params: GetExecutiveMajorShareholderReportParams
+  ): Promise<
+    BasicEquityDisclosureInfoResponse<ExecutiveMajorShareholderReport>
+  > {
+    return await this.get<
+      BasicEquityDisclosureInfoResponse<ExecutiveMajorShareholderReport>
+    >("elestock.json", params);
   }
 }
