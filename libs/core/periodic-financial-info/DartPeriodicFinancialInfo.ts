@@ -7,7 +7,7 @@ import { SingleCompanyAccountInfo } from "./types/models/SingleCompanyAccountInf
 import { XbrlTaxonomyFormat } from "./types/models/XbrlTaxonomyFormat";
 import { GetFinancialIndicatorsOfCompanyParams } from "./types/params/GetFinancialIndicatorsOfCompanyParams";
 import { GetFinancialIndicesOfCompaniesParams } from "./types/params/GetFinancialIndicesOfCompaniesParams";
-import { GetFullFinancialStatementsParams } from "./types/params/getFullFinancialStatementsParams";
+import { GetFullFinancialStatementsParams } from "./types/params/GetFullFinancialStatementsParams";
 import { GetOriginalFinancialStateFileParams } from "./types/params/GetOriginalFinancialStateFileParams";
 import { GetSingleCompanyAccountInfoParams } from "./types/params/GetSingleCompanyAccountInfoParams";
 import { GetXbrlTaxonomyFormatParams } from "./types/params/GetXbrlTaxonomyFormatParams";

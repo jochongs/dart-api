@@ -29,6 +29,8 @@ import { TotalDirectorCompensation } from "./types/model/TotalDirectorCompensati
 import { TotalStockStatus } from "./types/model/TotalStockStatus";
 import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
 import { UnregisteredExecutiveCompensation } from "./types/model/UnregisteredExecutiveCompensation";
+import { IndividualDirectorCompensationV2 } from "./types/model/IndividualDirectorCompensationV2";
+import { Top5ExecutiveCompensationV2 } from "./types/model/Top5ExecutiveCompensationV2";
 
 /**
  * ## [KO]
@@ -615,5 +617,49 @@ export class DartPeriodicKeyInfo extends DartBase {
     return await this.get<
       BasicPeriodicReportsResponse<PrivatePlacementFundUsage>
     >("prvsrpCptalUseDtls.json", params);
+  }
+
+  /**
+   * ## [KO] - 이사·감사의 개인별 보수현황(5억원 이상) Ver 2.0
+   * 정기보고서(사업, 분기, 반기보고서) 내에 이사·감사의 개인별 보수현황(5억원 이상)을 제공합니다.
+   * ※ 2026년 5월 이후 접수분부터 적용
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2026001
+   *
+   * ## [EN] - Remuneration for individual directors and auditors (Ver 2.0)
+   * Remuneration for individual directors and auditors is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   * ※ Applicable from filings after May 2026
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=2026001
+   */
+  public async getIndividualDirectorCompensationV2(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<IndividualDirectorCompensationV2>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<IndividualDirectorCompensationV2>
+    >("hmvAuditIndvdlBySttusV2.json", params);
+  }
+
+  /**
+   * ## [KO] - 개인별 보수지급 금액(5억이상 상위5인) Ver 2.0
+   * 정기보고서(사업, 분기, 반기보고서) 내에 개인별 보수지급 금액(5억이상 상위5인)을 제공합니다.
+   * ※ 2026년 5월 이후 접수분부터 적용
+   *
+   * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2026002
+   *
+   * ## [EN] - Individual remuneration amounts (top 5 over KRW 500 million) Ver 2.0
+   * Individual remuneration amounts (top five over KRW 500 million) is provided in the periodic reports
+   * (annual, quarterly, semi-annual reports).
+   * ※ Applicable from filings after May 2026
+   *
+   * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=2026002
+   */
+  public async getTop5ExecutiveCompensationV2(
+    params: BasicPeriodicReportsParams
+  ): Promise<BasicPeriodicReportsResponse<Top5ExecutiveCompensationV2>> {
+    return await this.get<
+      BasicPeriodicReportsResponse<Top5ExecutiveCompensationV2>
+    >("indvdlByPayV2.json", params);
   }
 }
