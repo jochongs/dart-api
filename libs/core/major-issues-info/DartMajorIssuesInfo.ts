@@ -273,7 +273,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getCreditorBankManagementProcedureCommencement(
     params: GetCreditorBankManagementProcedureCommencementParams
-  ): Promise<BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureCommencement>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureCommencement>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureCommencement>
     >("bnkMngtPcbg.json", params);
@@ -331,7 +333,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getOverseasSecuritiesDelistingDecision(
     params: GetOverseasSecuritiesDelistingDecisionParams
-  ): Promise<BasicMajorIssuesInfoResponse<OverseasSecuritiesDelistingDecision>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<OverseasSecuritiesDelistingDecision>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<OverseasSecuritiesDelistingDecision>
     >("ovDlstDecsn.json", params);
@@ -445,7 +449,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getCreditorBankManagementProcedureTermination(
     params: GetCreditorBankManagementProcedureTerminationParams
-  ): Promise<BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureTermination>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureTermination>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureTermination>
     >("bnkMngtPcsp.json", params);
@@ -464,7 +470,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getWriteDownContingentConvertibleBondIssueDecision(
     params: GetWriteDownContingentConvertibleBondIssueDecisionParams
-  ): Promise<BasicMajorIssuesInfoResponse<WriteDownContingentConvertibleBondIssueDecision>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<WriteDownContingentConvertibleBondIssueDecision>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<WriteDownContingentConvertibleBondIssueDecision>
     >("wdCocobdIsDecsn.json", params);
@@ -521,7 +529,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getTreasuryStockAcquisitionTrustContractConclusionDecision(
     params: GetTreasuryStockAcquisitionTrustContractConclusionDecisionParams
-  ): Promise<BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractConclusionDecision>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractConclusionDecision>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractConclusionDecision>
     >("tsstkAqTrctrCnsDecsn.json", params);
@@ -540,7 +550,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getTreasuryStockAcquisitionTrustContractCancellationDecision(
     params: GetTreasuryStockAcquisitionTrustContractCancellationDecisionParams
-  ): Promise<BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractCancellationDecision>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractCancellationDecision>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractCancellationDecision>
     >("tsstkAqTrctrCcDecsn.json", params);
@@ -635,7 +647,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getOtherCompanyStockAndInvestmentSecuritiesAcquisitionDecision(
     params: GetOtherCompanyStockAndInvestmentSecuritiesAcquisitionDecisionParams
-  ): Promise<BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesAcquisitionDecision>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesAcquisitionDecision>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesAcquisitionDecision>
     >("otcprStkInvscrInhDecsn.json", params);
@@ -654,7 +668,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getOtherCompanyStockAndInvestmentSecuritiesTransferDecision(
     params: GetOtherCompanyStockAndInvestmentSecuritiesTransferDecisionParams
-  ): Promise<BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesTransferDecision>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesTransferDecision>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesTransferDecision>
     >("otcprStkInvscrTrfDecsn.json", params);
@@ -673,7 +689,9 @@ export class DartMajorIssuesInfo extends DartBase {
    */
   public async getStockRelatedBondAcquisitionDecision(
     params: GetStockRelatedBondAcquisitionDecisionParams
-  ): Promise<BasicMajorIssuesInfoResponse<StockRelatedBondAcquisitionDecision>> {
+  ): Promise<
+    BasicMajorIssuesInfoResponse<StockRelatedBondAcquisitionDecision>
+  > {
     return await this.get<
       BasicMajorIssuesInfoResponse<StockRelatedBondAcquisitionDecision>
     >("stkrtbdInhDecsn.json", params);
@@ -712,9 +730,10 @@ export class DartMajorIssuesInfo extends DartBase {
   public async getCompanyMergerDecision(
     params: GetCompanyMergerDecisionParams
   ): Promise<BasicMajorIssuesInfoResponse<CompanyMergerDecision>> {
-    return await this.get<
-      BasicMajorIssuesInfoResponse<CompanyMergerDecision>
-    >("cmpMgDecsn.json", params);
+    return await this.get<BasicMajorIssuesInfoResponse<CompanyMergerDecision>>(
+      "cmpMgDecsn.json",
+      params
+    );
   }
 
   /**
