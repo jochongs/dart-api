@@ -14,7 +14,7 @@ export abstract class DartBase {
   private readonly API_KEY: string;
   private readonly language: "KR" | "EN";
   private readonly xmlParser: XMLParser;
-  protected readonly axios: Axios;
+  protected readonly axios: InstanceType<typeof Axios>;
 
   constructor(options: DartOptions) {
     this.API_KEY = options.key;
@@ -74,7 +74,7 @@ export abstract class DartBase {
     if (response.status !== 200) {
       throw new DartError(
         `DART API request failed with status code ${response.status}`,
-        response.headers
+        response.headers,
       );
     }
 
@@ -103,7 +103,7 @@ export abstract class DartBase {
    */
   private async getResponseBodyWithJsonForm<T>(
     contentType: DartResponseContentType,
-    data: ArrayBuffer
+    data: ArrayBuffer,
   ): Promise<Exclude<T, string>> {
     if (contentType === dartResponseContentType.XML) {
       const xmlString = new TextDecoder("utf-8").decode(data);
@@ -126,7 +126,7 @@ export abstract class DartBase {
    * Method to extract the Content-Type from the response.
    */
   private extractResponseContentType(
-    response: AxiosResponse
+    response: AxiosResponse,
   ): DartResponseContentType {
     const contentTypeHeader = response.headers["content-type"];
 
@@ -139,7 +139,7 @@ export abstract class DartBase {
     } else {
       throw new DartError(
         `Unsupported content type: ${contentTypeHeader}`,
-        response.headers
+        response.headers,
       );
     }
   }
@@ -152,7 +152,7 @@ export abstract class DartBase {
    * Method to check if the API response is an exception response.
    */
   protected isDartException<T>(
-    response: DartResponse<T>
+    response: DartResponse<T>,
   ): response is DartExceptionResponse {
     return response.status !== "000";
   }
@@ -165,7 +165,7 @@ export abstract class DartBase {
    * Method to set the default option values for `DartMethodOptions`.
    */
   protected getMethodOptions<T extends boolean = true>(
-    options?: DartMethodOptions<T>
+    options?: DartMethodOptions<T>,
   ): Required<DartMethodOptions<T>> {
     return {
       raw: options?.raw ?? (true as T),

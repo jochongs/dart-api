@@ -13,21 +13,23 @@ This library wraps the raw `DART API` into modular, developer-friendly classes, 
 
 ## 🛠 Usage
 
-<!--
 ```ts
-import { DartDisclosureInfo } from "./lib/core/disclosure-info/DartDisclosureInfo";
+import { DartDisclosureInfo } from "dart-api";
 
-const disclosure = new DartDisclosureInfo(YOUR_API_KEY);
+const dart = new DartDisclosureInfo({ key: "YOUR_API_KEY" });
 
-const results = await disclosure.fetchDisclosures("005930", "20240101");
-console.log(results);
+const results = await dart.searchDisclosures({
+  corp_code: "00126380",
+  bgn_de: "20240101",
+  end_de: "20241231",
+});
+
+console.log(results.list);
 ```
 
 > Each module (e.g., `DartMajorIssuesInfo`, `DartSecuritiesRegistrationInfo`) exposes functions tailored to its report type.
 
--->
-
 ## 📚 Documentation
 
 - [English Docs](./docs/en/index.md)
-- [Korean Docs](./README.ko.md)
+- [Korean Docs](./docs/ko/index.md)
