@@ -9,6 +9,7 @@ import { GetFinancialIndicatorsOfCompanyParams } from "./types/params/GetFinanci
 import { GetFinancialIndicesOfCompaniesParams } from "./types/params/GetFinancialIndicesOfCompaniesParams";
 import { GetFullFinancialStatementsParams } from "./types/params/GetFullFinancialStatementsParams";
 import { GetOriginalFinancialStateFileParams } from "./types/params/GetOriginalFinancialStateFileParams";
+import { GetMultipleCompanyAccountInfoParams } from "./types/params/GetMultipleCompanyAccountInfoParams";
 import { GetSingleCompanyAccountInfoParams } from "./types/params/GetSingleCompanyAccountInfoParams";
 import { GetXbrlTaxonomyFormatParams } from "./types/params/GetXbrlTaxonomyFormatParams";
 import { BasicPeriodicFinancialInfoResponse } from "./types/responses/BasicPeriodicFinancialInfoResponse";
@@ -60,7 +61,7 @@ export class DartPeriodicFinancialInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00034
    */
   public async getMultipleCompanyAccountInfo(
-    params: GetSingleCompanyAccountInfoParams
+    params: GetMultipleCompanyAccountInfoParams
   ): Promise<BasicPeriodicFinancialInfoResponse<MultipleCompanyAccountInfo>> {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<MultipleCompanyAccountInfo>

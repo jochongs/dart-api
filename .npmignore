@@ -1,0 +1,15 @@
+# Source
+libs/
+develop-test/
+docs/
+
+# Config
+tsconfig.json
+.eslintrc*
+.prettierrc*
+
+# Misc
+*.md
+!README.md
+.git/
+.gitignore
