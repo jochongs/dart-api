@@ -65,7 +65,7 @@ export class DartDisclosureInfo<
         page_no: params.page_no,
         page_count: params.page_count,
       },
-      this.getKeyFromArgs(args)
+      this.getKeyFromArgs(args),
     );
 
     if (filledOptions.raw) {
@@ -105,16 +105,20 @@ export class DartDisclosureInfo<
 
     const response = await this.get<
       GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
-    >("/company.json", {
-      corp_code,
-    }, this.getKeyFromArgs(args));
+    >(
+      "/company.json",
+      {
+        corp_code,
+      },
+      this.getKeyFromArgs(args),
+    );
 
     if (filledOptions.raw) {
       return response as GetOverviewOfCorporateResponse<RawCorporateStatusOverview> as any;
     }
 
     return CorporateStatusOverview.fromRaw(
-      response
+      response,
     ) as GetOverviewOfCorporateResponse<CorporateStatusOverview> as any;
   }
 
@@ -132,9 +136,13 @@ export class DartDisclosureInfo<
     rcept_no: string,
     ...args: DartKeyArgs<K>
   ): Promise<ArrayBuffer> {
-    const response = await this.get<ArrayBuffer>("/document.xml", {
-      rcept_no: rcept_no,
-    }, this.getKeyFromArgs(args));
+    const response = await this.get<ArrayBuffer>(
+      "/document.xml",
+      {
+        rcept_no: rcept_no,
+      },
+      this.getKeyFromArgs(args),
+    );
 
     return response;
   }
@@ -151,7 +159,11 @@ export class DartDisclosureInfo<
   public async getDisclosureCorporationCode(
     ...args: DartKeyArgs<K>
   ): Promise<ArrayBuffer> {
-    const response = await this.get<ArrayBuffer>("/corpCode.xml", {}, this.getKeyFromArgs(args));
+    const response = await this.get<ArrayBuffer>(
+      "/corpCode.xml",
+      {},
+      this.getKeyFromArgs(args),
+    );
 
     return response;
   }
