@@ -65,12 +65,7 @@ export abstract class DartBase<K extends KeyMode = "INJECTED"> {
    * Method to send a GET request.
    * Includes the API key in the params argument when sending the request.
    */
-  protected async get<T>(
-    path: string,
-    params: any = {},
-    key?: string,
-  ) {
-
+  protected async get<T>(path: string, params: any = {}, key?: string) {
     const response = await this.axios.get<ArrayBuffer>(path, {
       params: {
         crtfc_key: key ?? this.get_API_KEY(),
