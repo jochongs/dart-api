@@ -1,4 +1,6 @@
 import { DartBase } from "../DartBase";
+import { KeyMode } from "../../types/KeyMode";
+import { DartKeyArgs } from "../../types/DartKeyArgs";
 import { AssetTransferOtherPutBackOption } from "./types/model/AssetTransferOtherPutBackOption";
 import { BankruptcyOccurrence } from "./types/model/BankruptcyOccurrence";
 import { BondWithWarrantIssueDecision } from "./types/model/BondWithWarrantIssueDecision";
@@ -82,7 +84,9 @@ import { BasicMajorIssuesInfoResponse } from "./types/responses/BasicMajorIssues
  *
  * @link https://engopendart.fss.or.kr/guide/main.do?apiGrpCd=DE005
  */
-export class DartMajorIssuesInfo extends DartBase {
+export class DartMajorIssuesInfo<
+  K extends KeyMode = "INJECTED",
+> extends DartBase<K> {
   /**
    * ## [KO] - 자산양수도(기타), 풋백옵션
    * 주요사항보고서(자산양수도(기타), 풋백옵션) 내에 주요 정보를 제공합니다.
@@ -96,11 +100,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00042
    */
   public async getAssetTransferOtherPutBackOption(
-    params: GetAssetTransferOtherPutBackOptionParams
+    params: GetAssetTransferOtherPutBackOptionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<AssetTransferOtherPutBackOption>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<AssetTransferOtherPutBackOption>
-    >("astInhtrfEtcPtbkOpt.json", params);
+    >("astInhtrfEtcPtbkOpt.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -115,11 +120,13 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00043
    */
   public async getBankruptcyOccurrence(
-    params: GetBankruptcyOccurrenceParams
+    params: GetBankruptcyOccurrenceParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<BankruptcyOccurrence>> {
     return await this.get<BasicMajorIssuesInfoResponse<BankruptcyOccurrence>>(
       "dfOcr.json",
-      params
+      params,
+      this.getKeyFromArgs(args)
     );
   }
 
@@ -135,11 +142,13 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00044
    */
   public async getSuspensionOfBusiness(
-    params: GetSuspensionOfBusinessParams
+    params: GetSuspensionOfBusinessParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<SuspensionOfBusiness>> {
     return await this.get<BasicMajorIssuesInfoResponse<SuspensionOfBusiness>>(
       "bsnSp.json",
-      params
+      params,
+      this.getKeyFromArgs(args)
     );
   }
 
@@ -156,11 +165,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00045
    */
   public async getRehabilitationProcedureApplication(
-    params: GetRehabilitationProcedureApplicationParams
+    params: GetRehabilitationProcedureApplicationParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<RehabilitationProcedureApplication>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<RehabilitationProcedureApplication>
-    >("ctrcvsBgrq.json", params);
+    >("ctrcvsBgrq.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -175,11 +185,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00046
    */
   public async getDissolutionCauseOccurrence(
-    params: GetDissolutionCauseOccurrenceParams
+    params: GetDissolutionCauseOccurrenceParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<DissolutionCauseOccurrence>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<DissolutionCauseOccurrence>
-    >("dsRsOcr.json", params);
+    >("dsRsOcr.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -194,11 +205,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00047
    */
   public async getPaidInCapitalIncreaseDecision(
-    params: GetPaidInCapitalIncreaseDecisionParams
+    params: GetPaidInCapitalIncreaseDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<PaidInCapitalIncreaseDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<PaidInCapitalIncreaseDecision>
-    >("piicDecsn.json", params);
+    >("piicDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -213,11 +225,13 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00048
    */
   public async getBonusIssueDecision(
-    params: GetBonusIssueDecisionParams
+    params: GetBonusIssueDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<BonusIssueDecision>> {
     return await this.get<BasicMajorIssuesInfoResponse<BonusIssueDecision>>(
       "fricDecsn.json",
-      params
+      params,
+      this.getKeyFromArgs(args)
     );
   }
 
@@ -234,11 +248,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00049
    */
   public async getCombinedCapitalIncreaseDecision(
-    params: GetCombinedCapitalIncreaseDecisionParams
+    params: GetCombinedCapitalIncreaseDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<CombinedCapitalIncreaseDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<CombinedCapitalIncreaseDecision>
-    >("pifricDecsn.json", params);
+    >("pifricDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -253,11 +268,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00050
    */
   public async getCapitalReductionDecision(
-    params: GetCapitalReductionDecisionParams
+    params: GetCapitalReductionDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<CapitalReductionDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<CapitalReductionDecision>
-    >("crDecsn.json", params);
+    >("crDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -272,13 +288,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00051
    */
   public async getCreditorBankManagementProcedureCommencement(
-    params: GetCreditorBankManagementProcedureCommencementParams
+    params: GetCreditorBankManagementProcedureCommencementParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureCommencement>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureCommencement>
-    >("bnkMngtPcbg.json", params);
+    >("bnkMngtPcbg.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -293,11 +310,13 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00052
    */
   public async getLawsuitFiling(
-    params: GetLawsuitFilingParams
+    params: GetLawsuitFilingParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<LawsuitFiling>> {
     return await this.get<BasicMajorIssuesInfoResponse<LawsuitFiling>>(
       "lwstLg.json",
-      params
+      params,
+      this.getKeyFromArgs(args)
     );
   }
 
@@ -313,11 +332,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00053
    */
   public async getOverseasSecuritiesListingDecision(
-    params: GetOverseasSecuritiesListingDecisionParams
+    params: GetOverseasSecuritiesListingDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<OverseasSecuritiesListingDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<OverseasSecuritiesListingDecision>
-    >("ovLstDecsn.json", params);
+    >("ovLstDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -332,13 +352,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00054
    */
   public async getOverseasSecuritiesDelistingDecision(
-    params: GetOverseasSecuritiesDelistingDecisionParams
+    params: GetOverseasSecuritiesDelistingDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<OverseasSecuritiesDelistingDecision>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<OverseasSecuritiesDelistingDecision>
-    >("ovDlstDecsn.json", params);
+    >("ovDlstDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -353,11 +374,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00055
    */
   public async getOverseasSecuritiesListing(
-    params: GetOverseasSecuritiesListingParams
+    params: GetOverseasSecuritiesListingParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<OverseasSecuritiesListing>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<OverseasSecuritiesListing>
-    >("ovLst.json", params);
+    >("ovLst.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -372,11 +394,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00056
    */
   public async getOverseasSecuritiesDelisting(
-    params: GetOverseasSecuritiesDelistingParams
+    params: GetOverseasSecuritiesDelistingParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<OverseasSecuritiesDelisting>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<OverseasSecuritiesDelisting>
-    >("ovDlst.json", params);
+    >("ovDlst.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -391,11 +414,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00057
    */
   public async getConvertibleBondIssueDecision(
-    params: GetConvertibleBondIssueDecisionParams
+    params: GetConvertibleBondIssueDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<ConvertibleBondIssueDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<ConvertibleBondIssueDecision>
-    >("cvbdIsDecsn.json", params);
+    >("cvbdIsDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -410,11 +434,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00058
    */
   public async getBondWithWarrantIssueDecision(
-    params: GetBondWithWarrantIssueDecisionParams
+    params: GetBondWithWarrantIssueDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<BondWithWarrantIssueDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<BondWithWarrantIssueDecision>
-    >("bdwtIsDecsn.json", params);
+    >("bdwtIsDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -429,11 +454,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00059
    */
   public async getExchangeableBondIssueDecision(
-    params: GetExchangeableBondIssueDecisionParams
+    params: GetExchangeableBondIssueDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<ExchangeableBondIssueDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<ExchangeableBondIssueDecision>
-    >("exbdIsDecsn.json", params);
+    >("exbdIsDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -448,13 +474,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00060
    */
   public async getCreditorBankManagementProcedureTermination(
-    params: GetCreditorBankManagementProcedureTerminationParams
+    params: GetCreditorBankManagementProcedureTerminationParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureTermination>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<CreditorBankManagementProcedureTermination>
-    >("bnkMngtPcsp.json", params);
+    >("bnkMngtPcsp.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -469,13 +496,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00061
    */
   public async getWriteDownContingentConvertibleBondIssueDecision(
-    params: GetWriteDownContingentConvertibleBondIssueDecisionParams
+    params: GetWriteDownContingentConvertibleBondIssueDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<WriteDownContingentConvertibleBondIssueDecision>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<WriteDownContingentConvertibleBondIssueDecision>
-    >("wdCocobdIsDecsn.json", params);
+    >("wdCocobdIsDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -490,11 +518,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00062
    */
   public async getTreasuryStockAcquisitionDecision(
-    params: GetTreasuryStockAcquisitionDecisionParams
+    params: GetTreasuryStockAcquisitionDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionDecision>
-    >("tsstkAqDecsn.json", params);
+    >("tsstkAqDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -509,11 +538,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00063
    */
   public async getTreasuryStockDisposalDecision(
-    params: GetTreasuryStockDisposalDecisionParams
+    params: GetTreasuryStockDisposalDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<TreasuryStockDisposalDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<TreasuryStockDisposalDecision>
-    >("tsstkDpDecsn.json", params);
+    >("tsstkDpDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -528,13 +558,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00064
    */
   public async getTreasuryStockAcquisitionTrustContractConclusionDecision(
-    params: GetTreasuryStockAcquisitionTrustContractConclusionDecisionParams
+    params: GetTreasuryStockAcquisitionTrustContractConclusionDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractConclusionDecision>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractConclusionDecision>
-    >("tsstkAqTrctrCnsDecsn.json", params);
+    >("tsstkAqTrctrCnsDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -549,13 +580,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00065
    */
   public async getTreasuryStockAcquisitionTrustContractCancellationDecision(
-    params: GetTreasuryStockAcquisitionTrustContractCancellationDecisionParams
+    params: GetTreasuryStockAcquisitionTrustContractCancellationDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractCancellationDecision>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<TreasuryStockAcquisitionTrustContractCancellationDecision>
-    >("tsstkAqTrctrCcDecsn.json", params);
+    >("tsstkAqTrctrCcDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -570,11 +602,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00066
    */
   public async getBusinessAcquisitionDecision(
-    params: GetBusinessAcquisitionDecisionParams
+    params: GetBusinessAcquisitionDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<BusinessAcquisitionDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<BusinessAcquisitionDecision>
-    >("bsnInhDecsn.json", params);
+    >("bsnInhDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -589,11 +622,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00067
    */
   public async getBusinessTransferDecision(
-    params: GetBusinessTransferDecisionParams
+    params: GetBusinessTransferDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<BusinessTransferDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<BusinessTransferDecision>
-    >("bsnTrfDecsn.json", params);
+    >("bsnTrfDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -608,11 +642,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00068
    */
   public async getTangibleAssetAcquisitionDecision(
-    params: GetTangibleAssetAcquisitionDecisionParams
+    params: GetTangibleAssetAcquisitionDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<TangibleAssetAcquisitionDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<TangibleAssetAcquisitionDecision>
-    >("tgastInhDecsn.json", params);
+    >("tgastInhDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -627,11 +662,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00069
    */
   public async getTangibleAssetTransferDecision(
-    params: GetTangibleAssetTransferDecisionParams
+    params: GetTangibleAssetTransferDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<TangibleAssetTransferDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<TangibleAssetTransferDecision>
-    >("tgastTrfDecsn.json", params);
+    >("tgastTrfDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -646,13 +682,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00070
    */
   public async getOtherCompanyStockAndInvestmentSecuritiesAcquisitionDecision(
-    params: GetOtherCompanyStockAndInvestmentSecuritiesAcquisitionDecisionParams
+    params: GetOtherCompanyStockAndInvestmentSecuritiesAcquisitionDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesAcquisitionDecision>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesAcquisitionDecision>
-    >("otcprStkInvscrInhDecsn.json", params);
+    >("otcprStkInvscrInhDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -667,13 +704,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00071
    */
   public async getOtherCompanyStockAndInvestmentSecuritiesTransferDecision(
-    params: GetOtherCompanyStockAndInvestmentSecuritiesTransferDecisionParams
+    params: GetOtherCompanyStockAndInvestmentSecuritiesTransferDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesTransferDecision>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<OtherCompanyStockAndInvestmentSecuritiesTransferDecision>
-    >("otcprStkInvscrTrfDecsn.json", params);
+    >("otcprStkInvscrTrfDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -688,13 +726,14 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00072
    */
   public async getStockRelatedBondAcquisitionDecision(
-    params: GetStockRelatedBondAcquisitionDecisionParams
+    params: GetStockRelatedBondAcquisitionDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicMajorIssuesInfoResponse<StockRelatedBondAcquisitionDecision>
   > {
     return await this.get<
       BasicMajorIssuesInfoResponse<StockRelatedBondAcquisitionDecision>
-    >("stkrtbdInhDecsn.json", params);
+    >("stkrtbdInhDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -709,11 +748,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00073
    */
   public async getStockRelatedBondTransferDecision(
-    params: GetStockRelatedBondTransferDecisionParams
+    params: GetStockRelatedBondTransferDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<StockRelatedBondTransferDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<StockRelatedBondTransferDecision>
-    >("stkrtbdTrfDecsn.json", params);
+    >("stkrtbdTrfDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -728,11 +768,13 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00074
    */
   public async getCompanyMergerDecision(
-    params: GetCompanyMergerDecisionParams
+    params: GetCompanyMergerDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<CompanyMergerDecision>> {
     return await this.get<BasicMajorIssuesInfoResponse<CompanyMergerDecision>>(
       "cmpMgDecsn.json",
-      params
+      params,
+      this.getKeyFromArgs(args)
     );
   }
 
@@ -748,11 +790,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00075
    */
   public async getCompanyDivisionDecision(
-    params: GetCompanyDivisionDecisionParams
+    params: GetCompanyDivisionDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<CompanyDivisionDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<CompanyDivisionDecision>
-    >("cmpDvDecsn.json", params);
+    >("cmpDvDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -767,11 +810,12 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00076
    */
   public async getCompanyDivisionMergerDecision(
-    params: GetCompanyDivisionMergerDecisionParams
+    params: GetCompanyDivisionMergerDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<CompanyDivisionMergerDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<CompanyDivisionMergerDecision>
-    >("cmpDvmgDecsn.json", params);
+    >("cmpDvmgDecsn.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -786,10 +830,11 @@ export class DartMajorIssuesInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE005&apiId=AE00077
    */
   public async getStockExchangeTransferDecision(
-    params: GetStockExchangeTransferDecisionParams
+    params: GetStockExchangeTransferDecisionParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicMajorIssuesInfoResponse<StockExchangeTransferDecision>> {
     return await this.get<
       BasicMajorIssuesInfoResponse<StockExchangeTransferDecision>
-    >("stkExtrDecsn.json", params);
+    >("stkExtrDecsn.json", params, this.getKeyFromArgs(args));
   }
 }

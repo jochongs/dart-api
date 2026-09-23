@@ -1,4 +1,6 @@
 import { DartBase } from "../DartBase";
+import { KeyMode } from "../../types/KeyMode";
+import { DartKeyArgs } from "../../types/DartKeyArgs";
 import { IndicatorCategoryCode } from "./types/models/FinancialIndicatorsOfCompany";
 import { FinancialIndicesOfCompanies } from "./types/models/FinancialIndicesOfCompanies";
 import { FullFinancialStatements } from "./types/models/FullFinancialStatements";
@@ -23,7 +25,9 @@ import { BasicPeriodicFinancialInfoResponse } from "./types/responses/BasicPerio
  *
  * @link https://engopendart.fss.or.kr/guide/main.do?apiGrpCd=DE003
  */
-export class DartPeriodicFinancialInfo extends DartBase {
+export class DartPeriodicFinancialInfo<
+  K extends KeyMode = "INJECTED",
+> extends DartBase<K> {
   /**
    * ## [KO] - 단일회사 주요계정
    * 상장법인(유가증권, 코스닥) 및 주요 비상장법인(사업보고서 제출대상 & IFRS 적용)이 제출한 정기보고서 내에
@@ -40,11 +44,12 @@ export class DartPeriodicFinancialInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00033
    */
   public async getSingleCompanyAccountInfo(
-    params: GetSingleCompanyAccountInfoParams
+    params: GetSingleCompanyAccountInfoParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicFinancialInfoResponse<SingleCompanyAccountInfo>> {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<SingleCompanyAccountInfo>
-    >("fnlttSinglAcnt.json", params);
+    >("fnlttSinglAcnt.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -61,11 +66,12 @@ export class DartPeriodicFinancialInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00034
    */
   public async getMultipleCompanyAccountInfo(
-    params: GetMultipleCompanyAccountInfoParams
+    params: GetMultipleCompanyAccountInfoParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicFinancialInfoResponse<MultipleCompanyAccountInfo>> {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<MultipleCompanyAccountInfo>
-    >("fnlttMultiAcnt.json", params);
+    >("fnlttMultiAcnt.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -80,9 +86,10 @@ export class DartPeriodicFinancialInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00035
    */
   public async getOriginalFinancialStateFile(
-    params: GetOriginalFinancialStateFileParams
+    params: GetOriginalFinancialStateFileParams,
+    ...args: DartKeyArgs<K>
   ): Promise<ArrayBuffer> {
-    return await this.get<ArrayBuffer>("fnlttXbrl.xml", params);
+    return await this.get<ArrayBuffer>("fnlttXbrl.xml", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -97,11 +104,12 @@ export class DartPeriodicFinancialInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00036
    */
   public async getFullFinancialStatements(
-    params: GetFullFinancialStatementsParams
+    params: GetFullFinancialStatementsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicFinancialInfoResponse<FullFinancialStatements>> {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<FullFinancialStatements>
-    >("fnlttSinglAcntAll.json", params);
+    >("fnlttSinglAcntAll.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -116,11 +124,12 @@ export class DartPeriodicFinancialInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00037
    */
   public async getXbrlTaxonomyFormat(
-    params: GetXbrlTaxonomyFormatParams
+    params: GetXbrlTaxonomyFormatParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicFinancialInfoResponse<XbrlTaxonomyFormat>> {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<XbrlTaxonomyFormat>
-    >("xbrlTaxonomy.json", params);
+    >("xbrlTaxonomy.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -135,11 +144,12 @@ export class DartPeriodicFinancialInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00038
    */
   public async getFinancialIndicatorsOfCompany(
-    params: GetFinancialIndicatorsOfCompanyParams
+    params: GetFinancialIndicatorsOfCompanyParams,
+    ...args: DartKeyArgs<K>
   ) {
     return await this.get<
       BasicPeriodicFinancialInfoResponse<IndicatorCategoryCode>
-    >("fnlttSinglIndx.json", params);
+    >("fnlttSinglIndx.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -154,8 +164,9 @@ export class DartPeriodicFinancialInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE003&apiId=AE00039
    */
   public async getFinancialIndicesOfCompanies(
-    params: GetFinancialIndicesOfCompaniesParams
+    params: GetFinancialIndicesOfCompaniesParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicFinancialInfoResponse<FinancialIndicesOfCompanies>> {
-    return await this.get("fnlttCmpnyIndx.json", params);
+    return await this.get("fnlttCmpnyIndx.json", params, this.getKeyFromArgs(args));
   }
 }

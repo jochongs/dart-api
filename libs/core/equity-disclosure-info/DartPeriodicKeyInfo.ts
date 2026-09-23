@@ -1,4 +1,6 @@
 import { DartBase } from "../DartBase";
+import { KeyMode } from "../../types/KeyMode";
+import { DartKeyArgs } from "../../types/DartKeyArgs";
 import { ExecutiveMajorShareholderReport } from "./types/model/ExecutiveMajorShareholderReport";
 import { MajorShareholdingReport } from "./types/model/MajorShareholdingReport";
 import { GetExecutiveMajorShareholderReportParams } from "./types/params/GetExecutiveMajorShareholderReportParams";
@@ -14,7 +16,9 @@ import { BasicEquityDisclosureInfoResponse } from "./types/response/BasicEquityD
  *
  * @link https://engopendart.fss.or.kr/guide/main.do?apiGrpCd=DE004
  */
-export class DartEquityDisclosureInfo extends DartBase {
+export class DartEquityDisclosureInfo<
+  K extends KeyMode = "INJECTED",
+> extends DartBase<K> {
   /**
    * ## [KO] - 대량보유 상황보고
    * 주식등의 대량보유상황보고서 내에 대량보유 상황보고 정보를 제공합니다.
@@ -27,11 +31,12 @@ export class DartEquityDisclosureInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE004&apiId=AE00040
    */
   public async getMajorShareholdingReport(
-    params: GetMajorShareholdingReportParams
+    params: GetMajorShareholdingReportParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicEquityDisclosureInfoResponse<MajorShareholdingReport>> {
     return await this.get<
       Promise<BasicEquityDisclosureInfoResponse<MajorShareholdingReport>>
-    >("majorstock.json", params);
+    >("majorstock.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -46,12 +51,13 @@ export class DartEquityDisclosureInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE004&apiId=AE00040
    */
   public async getExecutiveMajorShareholderReport(
-    params: GetExecutiveMajorShareholderReportParams
+    params: GetExecutiveMajorShareholderReportParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     BasicEquityDisclosureInfoResponse<ExecutiveMajorShareholderReport>
   > {
     return await this.get<
       BasicEquityDisclosureInfoResponse<ExecutiveMajorShareholderReport>
-    >("elestock.json", params);
+    >("elestock.json", params, this.getKeyFromArgs(args));
   }
 }

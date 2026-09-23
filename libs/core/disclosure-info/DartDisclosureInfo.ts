@@ -1,5 +1,7 @@
 import { DartMethodOptions } from "../../types/DartMethodOptions";
 import { DartBase } from "../DartBase";
+import { KeyMode } from "../../types/KeyMode";
+import { DartKeyArgs } from "../../types/DartKeyArgs";
 import {
   CorporateStatusOverview,
   RawCorporateStatusOverview,
@@ -22,7 +24,9 @@ import { SearchDisclosuresResponse } from "./types/response/SearchDisclosuresRes
  *
  * @link https://engopendart.fss.or.kr/guide/main.do?apiGrpCd=DE001
  */
-export class DartDisclosureInfo extends DartBase {
+export class DartDisclosureInfo<
+  K extends KeyMode = "INJECTED",
+> extends DartBase<K> {
   /**
    * ## [KO] - 공시 검색
    * 공시 유형별, 회사별, 날짜별 등 여러가지 조건으로 공시보고서 검색기능을 제공합니다.
@@ -37,7 +41,8 @@ export class DartDisclosureInfo extends DartBase {
    */
   public async searchDisclosures<TRaw extends boolean = true>(
     params: SearchDisclosuresParams,
-    options?: DartMethodOptions<TRaw>
+    options?: DartMethodOptions<TRaw>,
+    ...args: DartKeyArgs<K>
   ): Promise<
     TRaw extends true
       ? SearchDisclosuresResponse<RawDisclosure>
@@ -59,7 +64,8 @@ export class DartDisclosureInfo extends DartBase {
         sort_mth: params.sort_mth,
         page_no: params.page_no,
         page_count: params.page_count,
-      }
+      },
+      this.getKeyFromArgs(args)
     );
 
     if (filledOptions.raw) {
@@ -88,7 +94,8 @@ export class DartDisclosureInfo extends DartBase {
    */
   public async getOverviewOfCorporate<TRaw extends boolean = true>(
     corp_code: string,
-    options?: DartMethodOptions<TRaw>
+    options?: DartMethodOptions<TRaw>,
+    ...args: DartKeyArgs<K>
   ): Promise<
     TRaw extends true
       ? GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
@@ -100,7 +107,7 @@ export class DartDisclosureInfo extends DartBase {
       GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
     >("/company.json", {
       corp_code,
-    });
+    }, this.getKeyFromArgs(args));
 
     if (filledOptions.raw) {
       return response as GetOverviewOfCorporateResponse<RawCorporateStatusOverview> as any;
@@ -122,11 +129,12 @@ export class DartDisclosureInfo extends DartBase {
    * @param rcept_no - [EN]Receipt number: Receipt number of the disclosure report
    */
   public async getOriginalDisclosureDocumentFile(
-    rcept_no: string
+    rcept_no: string,
+    ...args: DartKeyArgs<K>
   ): Promise<ArrayBuffer> {
     const response = await this.get<ArrayBuffer>("/document.xml", {
       rcept_no: rcept_no,
-    });
+    }, this.getKeyFromArgs(args));
 
     return response;
   }
@@ -140,8 +148,10 @@ export class DartDisclosureInfo extends DartBase {
    * and date of the latest change for a company subject to disclosure
    * and registered with DART are provided in file form.
    */
-  public async getDisclosureCorporationCode(): Promise<ArrayBuffer> {
-    const response = await this.get<ArrayBuffer>("/corpCode.xml");
+  public async getDisclosureCorporationCode(
+    ...args: DartKeyArgs<K>
+  ): Promise<ArrayBuffer> {
+    const response = await this.get<ArrayBuffer>("/corpCode.xml", {}, this.getKeyFromArgs(args));
 
     return response;
   }

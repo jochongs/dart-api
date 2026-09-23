@@ -9,15 +9,18 @@ import {
   DartResponseContentType,
 } from "../types/DartResponseContentType";
 import { DartError } from "../types/DartError";
+import { KeyMode } from "../types/KeyMode";
+import { DartKeyArgs } from "../types/DartKeyArgs";
 
-export abstract class DartBase {
-  private readonly API_KEY: string;
+export abstract class DartBase<K extends KeyMode = "INJECTED"> {
+  private readonly API_KEY: K extends "INJECTED" ? string : undefined | string;
   private readonly language: "KR" | "EN";
   private readonly xmlParser: XMLParser;
   protected readonly axios: InstanceType<typeof Axios>;
 
-  constructor(options: DartOptions) {
-    this.API_KEY = options.key;
+  constructor(options: DartOptions<K>) {
+    // ! API_KEY type이 클래스 정의 시점에서는 확인할 수 없기 때문에 타입 단언 필요
+    this.API_KEY = options.key as any;
     this.language = options.language ?? "KR";
 
     this.axios = new Axios({
@@ -34,7 +37,7 @@ export abstract class DartBase {
    * ## [EN]
    * Method to get the API key.
    */
-  protected get_API_KEY(): string {
+  protected get_API_KEY(): K extends "INJECTED" ? string : undefined | string {
     return this.API_KEY;
   }
 
@@ -62,10 +65,15 @@ export abstract class DartBase {
    * Method to send a GET request.
    * Includes the API key in the params argument when sending the request.
    */
-  protected async get<T>(path: string, params: any = {}): Promise<T> {
+  protected async get<T>(
+    path: string,
+    params: any = {},
+    key?: string,
+  ) {
+
     const response = await this.axios.get<ArrayBuffer>(path, {
       params: {
-        crtfc_key: this.get_API_KEY(),
+        crtfc_key: key ?? this.get_API_KEY(),
         ...params,
       },
       responseType: "arraybuffer",
@@ -92,6 +100,12 @@ export abstract class DartBase {
     }
 
     return dartResponse;
+  }
+
+  protected getKeyFromArgs(
+    args: DartKeyArgs<K>,
+  ): K extends "INJECTED" ? string | undefined : string {
+    return args[0] as any;
   }
 
   /**

@@ -31,6 +31,8 @@ import { TreasuryStockStatus } from "./types/model/TreasuryStockStatus";
 import { UnregisteredExecutiveCompensation } from "./types/model/UnregisteredExecutiveCompensation";
 import { IndividualDirectorCompensationV2 } from "./types/model/IndividualDirectorCompensationV2";
 import { Top5ExecutiveCompensationV2 } from "./types/model/Top5ExecutiveCompensationV2";
+import { KeyMode } from "../../types/KeyMode";
+import { DartKeyArgs } from "../../types/DartKeyArgs";
 
 /**
  * ## [KO]
@@ -43,7 +45,9 @@ import { Top5ExecutiveCompensationV2 } from "./types/model/Top5ExecutiveCompensa
  *
  * @link https://engopendart.fss.or.kr/guide/main.do?apiGrpCd=DE002
  */
-export class DartPeriodicKeyInfo extends DartBase {
+export class DartPeriodicKeyInfo<
+  K extends KeyMode = "INJECTED",
+> extends DartBase<K> {
   /**
    * ## KO - 증자(감자) 현황
    * 정기보고서(사업, 분기, 반기보고서) 내에 증자(감자) 현황을 제공합니다.
@@ -57,11 +61,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00005
    */
   public async getCapitalChangeStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<CapitalChangeStatus>> {
     return await this.get<BasicPeriodicReportsResponse<CapitalChangeStatus>>(
       "irdsSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -78,11 +84,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00006
    */
   public async getDividendInfo(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<DividendInfo>> {
     return await this.get<BasicPeriodicReportsResponse<DividendInfo>>(
       "alotMatter.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -100,11 +108,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00007
    */
   public async getTreasuryStockStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<TreasuryStockStatus>> {
     return await this.get<BasicPeriodicReportsResponse<TreasuryStockStatus>>(
       "tesstkAcqsDspsSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -121,11 +131,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00008
    */
   public async getMajorShareholderStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<MajorShareholderStatus>> {
     return await this.get<BasicPeriodicReportsResponse<MajorShareholderStatus>>(
       "hyslrSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -141,10 +153,14 @@ export class DartPeriodicKeyInfo extends DartBase {
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00009
    */
-  public async getMajorShareholderChange(params: BasicPeriodicReportsParams) {
+  public async getMajorShareholderChange(
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
+  ) {
     return await this.get<BasicPeriodicReportsResponse<MajorShareholderChange>>(
       "hyslrChgSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -161,11 +177,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00010
    */
   public async getMinorShareholderStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<MinorShareholderStatus>> {
     return await this.get<
       Promise<BasicPeriodicReportsResponse<MinorShareholderStatus>>
-    >("mrhlSttus.json", params);
+    >("mrhlSttus.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -181,11 +198,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00011
    */
   public async getExecutiveStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<ExecutiveStatus>> {
     return await this.get<BasicPeriodicReportsResponse<ExecutiveStatus>>(
       "exctvSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -202,11 +221,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00012
    */
   public async getEmployeeStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<EmployeeStatus>> {
     return await this.get<BasicPeriodicReportsResponse<EmployeeStatus>>(
       "empSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -223,11 +244,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00013
    */
   public async getIndividualDirectorCompensation(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<IndividualDirectorCompensation>> {
     return await this.get<
       BasicPeriodicReportsResponse<IndividualDirectorCompensation>
-    >("hmvAuditIndvdlBySttus.json", params);
+    >("hmvAuditIndvdlBySttus.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -243,11 +265,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00014
    */
   public async getTotalDirectorCompensation(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<TotalDirectorCompensation>> {
     return await this.get<
       BasicPeriodicReportsResponse<TotalDirectorCompensation>
-    >("hmvAuditAllSttus.json", params);
+    >("hmvAuditAllSttus.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -263,11 +286,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00015
    */
   public async getTop5ExecutiveCompensation(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<Top5ExecutiveCompensation>> {
     return await this.get<
       BasicPeriodicReportsResponse<Top5ExecutiveCompensation>
-    >(`indvdlByPay.json`, params);
+    >(`indvdlByPay.json`, params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -283,11 +307,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00016
    */
   public async getExternalInvestmentStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<ExternalInvestmentStatus>> {
     return await this.get<
       BasicPeriodicReportsResponse<ExternalInvestmentStatus>
-    >("otrCprInvstmntSttus.json", params);
+    >("otrCprInvstmntSttus.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -303,11 +328,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00017
    */
   public async getTotalStockStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<TotalStockStatus>> {
     return await this.get<BasicPeriodicReportsResponse<TotalStockStatus>>(
       "stockTotqySttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -324,11 +351,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00018
    */
   public async getDebtIssuanceStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<DebtIssuanceStatus>> {
     return await this.get<BasicPeriodicReportsResponse<DebtIssuanceStatus>>(
       "detScritsIsuAcmslt.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -345,11 +374,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00019
    */
   public async getCommercialPaperBalance(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<CommercialPaperBalance>> {
     return await this.get<BasicPeriodicReportsResponse<CommercialPaperBalance>>(
       "entrprsBilScritsNrdmpBlce.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -366,11 +397,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00020
    */
   public async getShortTermBondBalance(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<ShortTermBondBalance>> {
     return await this.get<BasicPeriodicReportsResponse<ShortTermBondBalance>>(
       "srtpdPsndbtNrdmpBlce.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -387,11 +420,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00021
    */
   public async getCorporateBondBalance(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<CorporateBondBalance>> {
     return await this.get<BasicPeriodicReportsResponse<CorporateBondBalance>>(
       "cprndNrdmpBlce.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -408,11 +443,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00022
    */
   public async getHybridBondBalance(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<HybridBondBalance>> {
     return await this.get<BasicPeriodicReportsResponse<HybridBondBalance>>(
       "newCaplScritsNrdmpBlce.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -429,11 +466,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00023
    */
   public async getContingentCapitalBalance(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<ContingentCapitalBalance>> {
     return await this.get<
       BasicPeriodicReportsResponse<ContingentCapitalBalance>
-    >("cndlCaplScritsNrdmpBlce.json", params);
+    >("cndlCaplScritsNrdmpBlce.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -449,11 +487,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00024
    */
   public async getAuditorNameAndOpinion(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<AuditorNameAndOpinion>> {
     return await this.get<BasicPeriodicReportsResponse<AuditorNameAndOpinion>>(
       "accnutAdtorNmNdAdtOpinion.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -470,11 +510,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00025
    */
   public async getAuditContractInfo(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<AuditContractInfo>> {
     return await this.get<BasicPeriodicReportsResponse<AuditContractInfo>>(
       "adtServcCnclsSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -491,11 +533,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00026
    */
   public async getNonAuditContractInfo(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<NonAuditContractInfo>> {
     return await this.get<BasicPeriodicReportsResponse<NonAuditContractInfo>>(
       "accnutAdtorNonAdtServcCnclsSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -512,11 +556,13 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00027
    */
   public async getOutsideDirectorStatus(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<OutsideDirectorStatus>> {
     return await this.get<BasicPeriodicReportsResponse<OutsideDirectorStatus>>(
       "outcmpnyDrctrNdChangeSttus.json",
-      params
+      params,
+      this.getKeyFromArgs(args),
     );
   }
 
@@ -533,11 +579,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00028
    */
   public async getUnregisteredExecutiveCompensation(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<UnregisteredExecutiveCompensation>> {
     return await this.get<
       BasicPeriodicReportsResponse<UnregisteredExecutiveCompensation>
-    >("unrstExctvMendngSttus.json", params);
+    >("unrstExctvMendngSttus.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -553,11 +600,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00029
    */
   public async getApprovedDirectorCompensation(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<ApprovedDirectorCompensation>> {
     return await this.get<
       BasicPeriodicReportsResponse<ApprovedDirectorCompensation>
-    >("drctrAdtAllMendngSttusGmtsckConfmAmount.json", params);
+    >("drctrAdtAllMendngSttusGmtsckConfmAmount.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -572,11 +620,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00030
    */
   public async getDirectorCompensationByType(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<DirectorCompensationByType>> {
     return await this.get<
       BasicPeriodicReportsResponse<DirectorCompensationByType>
-    >("drctrAdtAllMendngSttusMendngPymntamtTyCl.json", params);
+    >("drctrAdtAllMendngSttusMendngPymntamtTyCl.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -592,11 +641,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00031
    */
   public async getPublicOfferingFundUsage(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<PublicOfferingFundUsage>> {
     return await this.get<
       BasicPeriodicReportsResponse<PublicOfferingFundUsage>
-    >("pssrpCptalUseDtls.json", params);
+    >("pssrpCptalUseDtls.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -612,11 +662,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=AE00032
    */
   public async getPrivatePlacementFundUsage(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<PrivatePlacementFundUsage>> {
     return await this.get<
       BasicPeriodicReportsResponse<PrivatePlacementFundUsage>
-    >("prvsrpCptalUseDtls.json", params);
+    >("prvsrpCptalUseDtls.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -634,11 +685,12 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=2026001
    */
   public async getIndividualDirectorCompensationV2(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<IndividualDirectorCompensationV2>> {
     return await this.get<
       BasicPeriodicReportsResponse<IndividualDirectorCompensationV2>
-    >("hmvAuditIndvdlBySttusV2.json", params);
+    >("hmvAuditIndvdlBySttusV2.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -656,10 +708,11 @@ export class DartPeriodicKeyInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=2026002
    */
   public async getTop5ExecutiveCompensationV2(
-    params: BasicPeriodicReportsParams
+    params: BasicPeriodicReportsParams,
+    ...args: DartKeyArgs<K>
   ): Promise<BasicPeriodicReportsResponse<Top5ExecutiveCompensationV2>> {
     return await this.get<
       BasicPeriodicReportsResponse<Top5ExecutiveCompensationV2>
-    >("indvdlByPayV2.json", params);
+    >("indvdlByPayV2.json", params, this.getKeyFromArgs(args));
   }
 }

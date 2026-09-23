@@ -1,4 +1,6 @@
-export type DartOptions = {
+import { KeyMode } from "./KeyMode";
+
+export type DartOptions<K extends KeyMode = "INJECTED"> = {
   /**
    * ## [KO]
    * DART Open API 인증키입니다. 모든 API 요청 시 필수입니다.
@@ -11,7 +13,7 @@ export type DartOptions = {
    *
    * @link https://engopendart.fss.or.kr/uss/umt/EgovMberInsertView.do
    */
-  key: string;
+  key: K extends "INJECTED" ? string : undefined | string;
 
   /**
    * ## [KO]

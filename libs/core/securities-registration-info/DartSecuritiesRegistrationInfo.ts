@@ -1,4 +1,6 @@
 import { DartBase } from "../DartBase";
+import { KeyMode } from "../../types/KeyMode";
+import { DartKeyArgs } from "../../types/DartKeyArgs";
 import { SecuritiesRegistrationParams } from "./types/params/SecuritiesRegistrationParams";
 import {
   SecuritiesRegistrationGroup,
@@ -26,7 +28,9 @@ import { CompanyInfo } from "./types/model/CompanyInfo";
  *
  * @link https://engopendart.fss.or.kr/guide/main.do?apiGrpCd=DE006
  */
-export class DartSecuritiesRegistrationInfo extends DartBase {
+export class DartSecuritiesRegistrationInfo<
+  K extends KeyMode = "INJECTED",
+> extends DartBase<K> {
   /**
    * ## [KO] - 지분증권
    * 증권신고서(지분증권) 주요정보를 제공합니다.
@@ -39,7 +43,8 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE006&apiId=2020054
    */
   public async getEquitySecurities(
-    params: SecuritiesRegistrationParams
+    params: SecuritiesRegistrationParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     SecuritiesRegistrationResponse<
       [
@@ -63,7 +68,7 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
           SecuritiesRegistrationGroup<GeneralSubscriptionRedemption>,
         ]
       >
-    >("estkRs.json", params);
+    >("estkRs.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -78,7 +83,8 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE006&apiId=2020055
    */
   public async getDebtSecurities(
-    params: SecuritiesRegistrationParams
+    params: SecuritiesRegistrationParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     SecuritiesRegistrationResponse<
       [
@@ -98,7 +104,7 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
           SecuritiesRegistrationGroup<SalesHolder>,
         ]
       >
-    >("bdRs.json", params);
+    >("bdRs.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -113,7 +119,8 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE006&apiId=2020056
    */
   public async getDepositarySecurities(
-    params: SecuritiesRegistrationParams
+    params: SecuritiesRegistrationParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     SecuritiesRegistrationResponse<
       [
@@ -135,7 +142,7 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
           SecuritiesRegistrationGroup<SalesHolder>,
         ]
       >
-    >("stkdpRs.json", params);
+    >("stkdpRs.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -150,7 +157,8 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE006&apiId=2020057
    */
   public async getMerger(
-    params: SecuritiesRegistrationParams
+    params: SecuritiesRegistrationParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     SecuritiesRegistrationResponse<
       [
@@ -168,7 +176,7 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
           SecuritiesRegistrationGroup<CompanyInfo>,
         ]
       >
-    >("mgRs.json", params);
+    >("mgRs.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -184,7 +192,8 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE006&apiId=2020058
    */
   public async getComprehensiveStockExchangeTransfer(
-    params: SecuritiesRegistrationParams
+    params: SecuritiesRegistrationParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     SecuritiesRegistrationResponse<
       [
@@ -202,7 +211,7 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
           SecuritiesRegistrationGroup<CompanyInfo>,
         ]
       >
-    >("extrRs.json", params);
+    >("extrRs.json", params, this.getKeyFromArgs(args));
   }
 
   /**
@@ -217,7 +226,8 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE006&apiId=2020059
    */
   public async getSpinOff(
-    params: SecuritiesRegistrationParams
+    params: SecuritiesRegistrationParams,
+    ...args: DartKeyArgs<K>
   ): Promise<
     SecuritiesRegistrationResponse<
       [
@@ -235,6 +245,6 @@ export class DartSecuritiesRegistrationInfo extends DartBase {
           SecuritiesRegistrationGroup<CompanyInfo>,
         ]
       >
-    >("dvRs.json", params);
+    >("dvRs.json", params, this.getKeyFromArgs(args));
   }
 }
