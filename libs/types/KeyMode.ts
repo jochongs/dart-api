@@ -1,1 +1,1 @@
-export type KeyMode = "INJECTED" | "REQUIRED";
+export type KeyMode = "INJECTED" | "REQUIRED" | "NEVER_REQUIRED";

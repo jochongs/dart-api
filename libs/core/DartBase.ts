@@ -12,8 +12,14 @@ import { DartError } from "../types/DartError";
 import { KeyMode } from "../types/KeyMode";
 import { DartKeyArgs } from "../types/DartKeyArgs";
 
+export type KeyStatus<K extends KeyMode> = K extends "INJECTED"
+  ? string
+  : K extends "REQUIRED"
+    ? undefined | string
+    : never;
+
 export abstract class DartBase<K extends KeyMode = "INJECTED"> {
-  private readonly API_KEY: K extends "INJECTED" ? string : undefined | string;
+  private readonly API_KEY: KeyStatus<K>;
   private readonly language: "KR" | "EN";
   private readonly xmlParser: XMLParser;
   protected readonly axios: InstanceType<typeof Axios>;
@@ -65,7 +71,7 @@ export abstract class DartBase<K extends KeyMode = "INJECTED"> {
    * Method to send a GET request.
    * Includes the API key in the params argument when sending the request.
    */
-  protected async get<T>(path: string, params: any = {}, key?: string) {
+  protected async get<T>(path: string, params: any = {}, key?: KeyStatus<K>) {
     const response = await this.axios.get<ArrayBuffer>(path, {
       params: {
         crtfc_key: key ?? this.get_API_KEY(),
@@ -97,9 +103,7 @@ export abstract class DartBase<K extends KeyMode = "INJECTED"> {
     return dartResponse;
   }
 
-  protected getKeyFromArgs(
-    args: DartKeyArgs<K>,
-  ): K extends "INJECTED" ? string | undefined : string {
+  protected getKeyFromArgs(args: DartKeyArgs<K>): KeyStatus<K> {
     return args[0] as any;
   }
 
