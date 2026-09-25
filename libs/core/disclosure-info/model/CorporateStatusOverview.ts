@@ -13,7 +13,7 @@ export type RawCorporateStatusOverview = Stringify<CorporateStatusOverview>;
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00002#:~:text=Information%20%3E%20Corporation%20code-,Response,-result
  */
-export class CorporateStatusOverview {
+export type CorporateStatusOverview = {
   /**
    * ## [KO]
    * - 정식 명칭
@@ -25,7 +25,7 @@ export class CorporateStatusOverview {
    *
    * Formal corporate name
    */
-  public corp_name: string;
+  corp_name: string;
 
   /**
    * ## [KO]
@@ -38,7 +38,7 @@ export class CorporateStatusOverview {
    *
    * English formal corporate name
    */
-  public corp_name_eng: string;
+  corp_name_eng: string;
 
   /**
    * ## [KO]
@@ -51,7 +51,7 @@ export class CorporateStatusOverview {
    *
    * Item name (listed corporation) or abbreviated name (other corporation)
    */
-  public stock_name: string;
+  stock_name: string;
 
   /**
    * ## [KO]
@@ -62,9 +62,9 @@ export class CorporateStatusOverview {
    * ## [EN]
    * - If a listed corporation, stock item code
    *
-   * Listed corporation’s item code (6 digits)
+   * Listed corporation's item code (6 digits)
    */
-  public stock_code: string;
+  stock_code: string;
 
   /**
    * ## [KO]
@@ -77,7 +77,7 @@ export class CorporateStatusOverview {
    *
    * Representative name
    */
-  public ceo_nm: string;
+  ceo_nm: string;
 
   /**
    * ## [KO]
@@ -90,7 +90,7 @@ export class CorporateStatusOverview {
    *
    * Corporation type: Y (KOSPI), K (KOSDAQ), N (KONEX), E (Other)
    */
-  public corp_cls: "Y" | "K" | "N" | "E";
+  corp_cls: "Y" | "K" | "N" | "E";
 
   /**
    * ## [KO]
@@ -103,7 +103,7 @@ export class CorporateStatusOverview {
    *
    * Corporate registration No.
    */
-  public jurir_no: string | null;
+  jurir_no: string | null;
 
   /**
    * ## [KO]
@@ -116,7 +116,7 @@ export class CorporateStatusOverview {
    *
    * Business registration No.
    */
-  public bizr_no: string;
+  bizr_no: string;
 
   /**
    * ## [KO]
@@ -129,7 +129,7 @@ export class CorporateStatusOverview {
    *
    * Address
    */
-  public adres: string;
+  adres: string;
 
   /**
    * ## [KO]
@@ -142,7 +142,7 @@ export class CorporateStatusOverview {
    *
    * Website URL
    */
-  public hm_url: string | null;
+  hm_url: string | null;
 
   /**
    * ## [KO]
@@ -155,7 +155,7 @@ export class CorporateStatusOverview {
    *
    * IR website
    */
-  public ir_url: string | null;
+  ir_url: string | null;
 
   /**
    * ## [KO]
@@ -168,7 +168,7 @@ export class CorporateStatusOverview {
    *
    * Telephone No.
    */
-  public phn_no: string;
+  phn_no: string;
 
   /**
    * ## [KO]
@@ -181,7 +181,7 @@ export class CorporateStatusOverview {
    *
    * Fax No.
    */
-  public fax_no: string | null;
+  fax_no: string | null;
 
   /**
    * ## [KO]
@@ -194,7 +194,7 @@ export class CorporateStatusOverview {
    *
    * Industry code
    */
-  public induty_code: string;
+  induty_code: string;
 
   /**
    * ## [KO]
@@ -207,7 +207,7 @@ export class CorporateStatusOverview {
    *
    * Establishment date (YYYYMMDD)
    */
-  public est_dt: string;
+  est_dt: string;
 
   /**
    * ## [KO]
@@ -220,48 +220,5 @@ export class CorporateStatusOverview {
    *
    * Month of settlement (MM)
    */
-  public acc_mt: string;
-
-  constructor(data: CorporateStatusOverview) {
-    this.corp_name = data.corp_name;
-    this.corp_name_eng = data.corp_name_eng;
-    this.stock_name = data.stock_name;
-    this.stock_code = data.stock_code;
-    this.ceo_nm = data.ceo_nm;
-    this.corp_cls = data.corp_cls;
-    this.jurir_no = data.jurir_no;
-    this.bizr_no = data.bizr_no;
-    this.adres = data.adres;
-    this.hm_url = data.hm_url;
-    this.ir_url = data.ir_url;
-    this.phn_no = data.phn_no;
-    this.fax_no = data.fax_no;
-    this.induty_code = data.induty_code;
-    this.est_dt = data.est_dt;
-    this.acc_mt = data.acc_mt;
-  }
-
-  public static fromRaw(
-    data: RawCorporateStatusOverview
-  ): CorporateStatusOverview {
-    return new CorporateStatusOverview({
-      ...data,
-      corp_name: data.corp_name,
-      corp_name_eng: data.corp_name_eng,
-      stock_name: data.stock_name,
-      stock_code: data.stock_code,
-      ceo_nm: data.ceo_nm,
-      corp_cls: data.corp_cls as any,
-      jurir_no: data.jurir_no || null,
-      bizr_no: data.bizr_no,
-      adres: data.adres,
-      hm_url: data.hm_url || null,
-      ir_url: data.ir_url || null,
-      phn_no: data.phn_no,
-      fax_no: data.fax_no || null,
-      induty_code: data.induty_code,
-      est_dt: data.est_dt,
-      acc_mt: data.acc_mt,
-    });
-  }
-}
+  acc_mt: string;
+};

@@ -1,16 +1,5 @@
 import { Stringify } from "../../../types/Stringify";
 
-/**
- * ## [KO]
- * 공시 데이터
- *
- * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019001#:~:text=%EC%B4%9D%20%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%88%98-,list,-corp_cls
- *
- * ## [EN]
- * Disclosure data
- *
- * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001#:~:text=Total%20pages-,list,-corp_cls
- */
 export type RawDisclosure = Stringify<Disclosure>;
 
 /**
@@ -24,7 +13,7 @@ export type RawDisclosure = Stringify<Disclosure>;
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001#:~:text=Total%20pages-,list,-corp_cls
  */
-export class Disclosure {
+export type Disclosure = {
   /**
    * ## [KO]
    * 법인구분 : Y(유가), K(코스닥), N(코넥스), E(기타)
@@ -32,7 +21,7 @@ export class Disclosure {
    * ## [EN]
    * Corporation type: Y (KOSPI), K (KOSDAQ), N (KONEX), E (Other)
    */
-  public corp_cls: "Y" | "K" | "N" | "E";
+  corp_cls: "Y" | "K" | "N" | "E";
 
   /**
    * ## [KO]
@@ -45,7 +34,7 @@ export class Disclosure {
    *
    * The item name (listed company) or corporation name (other corporation) of the corporation subject to disclosure
    */
-  public corp_name: string;
+  corp_name: string;
 
   /**
    * ## [KO]
@@ -58,7 +47,7 @@ export class Disclosure {
    *
    * Corporation code of the corporation subject to disclosure (8 digits)
    */
-  public corp_code: string;
+  corp_code: string;
 
   /**
    * ## [KO]
@@ -69,9 +58,9 @@ export class Disclosure {
    * ## [EN]
    * - Item code
    *
-   * Listed corporation’s item code (6 digits)
+   * Listed corporation's item code (6 digits)
    */
-  public stock_code: string;
+  stock_code: string;
 
   /**
    * ## [KO]
@@ -101,7 +90,7 @@ export class Disclosure {
    * - [Correction order imposed]: The Financial Supervisory Service issued a correction order on this report.
    * - [Requested submission of correction]: The Financial Supervisory Service imposed a request for a correction on this report.
    */
-  public report_nm: string;
+  report_nm: string;
 
   /**
    * ## [KO]
@@ -120,7 +109,7 @@ export class Disclosure {
    * ※ Example link to Disclosure Viewer
    * - For PCs: https://englishdart.fss.or.kr/dsbh001/main.do?rcpNo=FilingNumber
    */
-  public rcept_no: string;
+  rcept_no: string;
 
   /**
    * ## [KO]
@@ -133,7 +122,7 @@ export class Disclosure {
    *
    * Disclosure submitter name
    */
-  public flr_nm: string;
+  flr_nm: string;
 
   /**
    * ## [KO]
@@ -146,7 +135,7 @@ export class Disclosure {
    *
    * Disclosure filing date (YYYYMMDD)
    */
-  public rcept_dt: Date;
+  rcept_dt: string;
 
   /**
    * ## [KO]
@@ -175,31 +164,5 @@ export class Disclosure {
    * - U: A correction report was made after the submission of this report; see the relevant report.
    * - W: This report was (deemed) withdrawn; see the relevant withdrawal statement (notice of deemed withdrawal).
    */
-  public rm: string;
-
-  constructor(data: Disclosure) {
-    this.corp_cls = data.corp_cls;
-    this.corp_name = data.corp_name;
-    this.corp_code = data.corp_code;
-    this.stock_code = data.stock_code;
-    this.report_nm = data.report_nm;
-    this.rcept_no = data.rcept_no;
-    this.flr_nm = data.flr_nm;
-    this.rcept_dt = data.rcept_dt;
-    this.rm = data.rm;
-  }
-
-  public static fromRaw(data: RawDisclosure) {
-    return new Disclosure({
-      corp_cls: data.corp_cls as any,
-      corp_name: data.corp_name,
-      corp_code: data.corp_code,
-      stock_code: data.stock_code,
-      report_nm: data.report_nm,
-      rcept_no: data.rcept_no,
-      flr_nm: data.flr_nm,
-      rcept_dt: new Date(data.rcept_dt),
-      rm: data.rm,
-    });
-  }
-}
+  rm: string;
+};

@@ -15,7 +15,6 @@ export { DartError } from "./types/DartError";
 export { DartFinancialStatementType } from "./types/DartFinancialStatementType";
 export type { DartIndicatorCategoryCodeType } from "./types/DartIndicatorCategoryCodeType";
 export type { DartMarketType } from "./types/DartMarketType";
-export type { DartMethodOptions } from "./types/DartMethodOptions";
 export type { DartModel } from "./types/DartModel";
 export type { DartOptions } from "./types/DartOptions";
 export type { DartRequestParams } from "./types/DartRequestParams";
@@ -32,9 +31,7 @@ export type { ReportCodeType } from "./types/ReportCodeType";
 export type { Stringify } from "./types/Stringify";
 
 // ─── Disclosure Info ──────────────────────────────────────────────────────────
-export { CorporateStatusOverview } from "./core/disclosure-info/model/CorporateStatusOverview";
 export type { RawCorporateStatusOverview } from "./core/disclosure-info/model/CorporateStatusOverview";
-export { Disclosure } from "./core/disclosure-info/model/Disclosure";
 export type { RawDisclosure } from "./core/disclosure-info/model/Disclosure";
 export type { PublicNotificationDetailType } from "./core/disclosure-info/types/PublicNotificationDetailType";
 export { publicNotificationDetailType } from "./core/disclosure-info/types/PublicNotificationDetailType";

@@ -1,12 +1,8 @@
-import { DartMethodOptions } from "../../types/DartMethodOptions";
 import { DartBase } from "../DartBase";
 import { KeyMode } from "../../types/KeyMode";
 import { DartKeyArgs } from "../../types/DartKeyArgs";
-import {
-  CorporateStatusOverview,
-  RawCorporateStatusOverview,
-} from "./model/CorporateStatusOverview";
-import { Disclosure, RawDisclosure } from "./model/Disclosure";
+import { RawCorporateStatusOverview } from "./model/CorporateStatusOverview";
+import { RawDisclosure } from "./model/Disclosure";
 import { SearchDisclosuresParams } from "./types/param/SearchDisclosuresParams";
 import { GetOverviewOfCorporateResponse } from "./types/response/GetOverviewOfCorporateResponse";
 import { SearchDisclosuresResponse } from "./types/response/SearchDisclosuresResponse";
@@ -39,18 +35,11 @@ export class DartDisclosureInfo<
    *
    * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE001&apiId=AE00001
    */
-  public async searchDisclosures<TRaw extends boolean = true>(
+  public async searchDisclosures(
     params: SearchDisclosuresParams,
-    options?: DartMethodOptions<TRaw>,
     ...args: DartKeyArgs<K>
-  ): Promise<
-    TRaw extends true
-      ? SearchDisclosuresResponse<RawDisclosure>
-      : SearchDisclosuresResponse<Disclosure>
-  > {
-    const filledOptions = this.getMethodOptions(options);
-
-    const response = await this.get<SearchDisclosuresResponse<RawDisclosure>>(
+  ): Promise<SearchDisclosuresResponse<RawDisclosure>> {
+    return this.get<SearchDisclosuresResponse<RawDisclosure>>(
       "/list.json",
       {
         corp_code: params.corp_code,
@@ -67,15 +56,6 @@ export class DartDisclosureInfo<
       },
       this.getKeyFromArgs(args),
     );
-
-    if (filledOptions.raw) {
-      return response as SearchDisclosuresResponse<RawDisclosure> as any;
-    }
-
-    return {
-      ...response,
-      list: response.list.map(Disclosure.fromRaw),
-    } as SearchDisclosuresResponse<Disclosure> as any;
   }
 
   /**
@@ -92,34 +72,17 @@ export class DartDisclosureInfo<
    * @param corp_code - [KO]기업 고유번호: 공시대상회사의 고유번호(8자리)
    * @param corp_code - [EN]Corporation code: Corporation code of disclosing company (8 digits)
    */
-  public async getOverviewOfCorporate<TRaw extends boolean = true>(
+  public async getOverviewOfCorporate(
     corp_code: string,
-    options?: DartMethodOptions<TRaw>,
     ...args: DartKeyArgs<K>
-  ): Promise<
-    TRaw extends true
-      ? GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
-      : GetOverviewOfCorporateResponse<CorporateStatusOverview>
-  > {
-    const filledOptions = this.getMethodOptions(options);
-
-    const response = await this.get<
-      GetOverviewOfCorporateResponse<RawCorporateStatusOverview>
-    >(
+  ): Promise<GetOverviewOfCorporateResponse<RawCorporateStatusOverview>> {
+    return this.get<GetOverviewOfCorporateResponse<RawCorporateStatusOverview>>(
       "/company.json",
       {
         corp_code,
       },
       this.getKeyFromArgs(args),
     );
-
-    if (filledOptions.raw) {
-      return response as GetOverviewOfCorporateResponse<RawCorporateStatusOverview> as any;
-    }
-
-    return CorporateStatusOverview.fromRaw(
-      response,
-    ) as GetOverviewOfCorporateResponse<CorporateStatusOverview> as any;
   }
 
   /**

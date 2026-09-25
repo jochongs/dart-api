@@ -2,7 +2,6 @@ import { Axios, AxiosResponse } from "axios";
 import { DartOptions } from "../types/DartOptions";
 import { DartExceptionResponse, DartResponse } from "../types/DartResponse";
 import { DartException } from "../exceptions/DartException";
-import { DartMethodOptions } from "../types/DartMethodOptions";
 import { XMLParser } from "fast-xml-parser";
 import {
   dartResponseContentType,
@@ -170,18 +169,4 @@ export abstract class DartBase<K extends KeyMode = "INJECTED"> {
     return response.status !== "000";
   }
 
-  /**
-   * ## [KO]
-   * `DartMethodOptions`의 기본 옵션 값을 정해주는 메서드입니다.
-   *
-   * ## [EN]
-   * Method to set the default option values for `DartMethodOptions`.
-   */
-  protected getMethodOptions<T extends boolean = true>(
-    options?: DartMethodOptions<T>,
-  ): Required<DartMethodOptions<T>> {
-    return {
-      raw: options?.raw ?? (true as T),
-    };
-  }
 }
