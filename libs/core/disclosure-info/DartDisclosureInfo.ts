@@ -1,8 +1,6 @@
 import { DartBase } from "../DartBase";
 import { KeyMode } from "../../types/KeyMode";
 import { DartKeyArgs } from "../../types/DartKeyArgs";
-import { RawCorporateStatusOverview } from "./model/CorporateStatusOverview";
-import { RawDisclosure } from "./model/Disclosure";
 import { SearchDisclosuresParams } from "./types/param/SearchDisclosuresParams";
 import { GetOverviewOfCorporateResponse } from "./types/response/GetOverviewOfCorporateResponse";
 import { SearchDisclosuresResponse } from "./types/response/SearchDisclosuresResponse";
@@ -38,8 +36,8 @@ export class DartDisclosureInfo<
   public async searchDisclosures(
     params: SearchDisclosuresParams,
     ...args: DartKeyArgs<K>
-  ): Promise<SearchDisclosuresResponse<RawDisclosure>> {
-    return this.get<SearchDisclosuresResponse<RawDisclosure>>(
+  ): Promise<SearchDisclosuresResponse> {
+    return this.get<SearchDisclosuresResponse>(
       "/list.json",
       {
         corp_code: params.corp_code,
@@ -75,8 +73,8 @@ export class DartDisclosureInfo<
   public async getOverviewOfCorporate(
     corp_code: string,
     ...args: DartKeyArgs<K>
-  ): Promise<GetOverviewOfCorporateResponse<RawCorporateStatusOverview>> {
-    return this.get<GetOverviewOfCorporateResponse<RawCorporateStatusOverview>>(
+  ): Promise<GetOverviewOfCorporateResponse> {
+    return this.get<GetOverviewOfCorporateResponse>(
       "/company.json",
       {
         corp_code,
@@ -99,15 +97,13 @@ export class DartDisclosureInfo<
     rcept_no: string,
     ...args: DartKeyArgs<K>
   ): Promise<ArrayBuffer> {
-    const response = await this.get<ArrayBuffer>(
+    return this.get<ArrayBuffer>(
       "/document.xml",
       {
         rcept_no: rcept_no,
       },
       this.getKeyFromArgs(args),
     );
-
-    return response;
   }
 
   /**
@@ -122,12 +118,10 @@ export class DartDisclosureInfo<
   public async getDisclosureCorporationCode(
     ...args: DartKeyArgs<K>
   ): Promise<ArrayBuffer> {
-    const response = await this.get<ArrayBuffer>(
+    return this.get<ArrayBuffer>(
       "/corpCode.xml",
       {},
       this.getKeyFromArgs(args),
     );
-
-    return response;
   }
 }

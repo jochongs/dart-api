@@ -1,7 +1,4 @@
-import {
-  CorporateStatusOverview,
-  RawCorporateStatusOverview,
-} from "../../model/CorporateStatusOverview";
+import { CorporateStatusOverview } from "../../model/CorporateStatusOverview";
 
 /**
  * ## [KO]
@@ -10,6 +7,4 @@ import {
  * ## [EN]
  * Response of `getOverviewOfCorporate` method
  */
-export type GetOverviewOfCorporateResponse<
-  T extends CorporateStatusOverview | RawCorporateStatusOverview
-> = T;
+export type GetOverviewOfCorporateResponse = CorporateStatusOverview;

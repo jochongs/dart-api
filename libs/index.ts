@@ -31,8 +31,8 @@ export type { ReportCodeType } from "./types/ReportCodeType";
 export type { Stringify } from "./types/Stringify";
 
 // ─── Disclosure Info ──────────────────────────────────────────────────────────
-export type { RawCorporateStatusOverview } from "./core/disclosure-info/model/CorporateStatusOverview";
-export type { RawDisclosure } from "./core/disclosure-info/model/Disclosure";
+export type { CorporateStatusOverview } from "./core/disclosure-info/model/CorporateStatusOverview";
+export type { Disclosure } from "./core/disclosure-info/model/Disclosure";
 export type { PublicNotificationDetailType } from "./core/disclosure-info/types/PublicNotificationDetailType";
 export { publicNotificationDetailType } from "./core/disclosure-info/types/PublicNotificationDetailType";
 export type { PublicNotificationType } from "./core/disclosure-info/types/PublicNotificationType";

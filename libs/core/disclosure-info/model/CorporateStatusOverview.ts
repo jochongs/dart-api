@@ -1,7 +1,3 @@
-import { Stringify } from "../../../types/Stringify";
-
-export type RawCorporateStatusOverview = Stringify<CorporateStatusOverview>;
-
 /**
  * ## [KO]
  * 기업 개황
@@ -90,7 +86,7 @@ export type CorporateStatusOverview = {
    *
    * Corporation type: Y (KOSPI), K (KOSDAQ), N (KONEX), E (Other)
    */
-  corp_cls: "Y" | "K" | "N" | "E";
+  corp_cls: string;
 
   /**
    * ## [KO]
@@ -103,7 +99,7 @@ export type CorporateStatusOverview = {
    *
    * Corporate registration No.
    */
-  jurir_no: string | null;
+  jurir_no: string;
 
   /**
    * ## [KO]
@@ -142,7 +138,7 @@ export type CorporateStatusOverview = {
    *
    * Website URL
    */
-  hm_url: string | null;
+  hm_url: string;
 
   /**
    * ## [KO]
@@ -155,7 +151,7 @@ export type CorporateStatusOverview = {
    *
    * IR website
    */
-  ir_url: string | null;
+  ir_url: string;
 
   /**
    * ## [KO]
@@ -181,7 +177,7 @@ export type CorporateStatusOverview = {
    *
    * Fax No.
    */
-  fax_no: string | null;
+  fax_no: string;
 
   /**
    * ## [KO]

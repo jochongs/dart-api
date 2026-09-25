@@ -1,7 +1,3 @@
-import { Stringify } from "../../../types/Stringify";
-
-export type RawDisclosure = Stringify<Disclosure>;
-
 /**
  * ## [KO]
  * 공시 데이터
@@ -21,7 +17,7 @@ export type Disclosure = {
    * ## [EN]
    * Corporation type: Y (KOSPI), K (KOSDAQ), N (KONEX), E (Other)
    */
-  corp_cls: "Y" | "K" | "N" | "E";
+  corp_cls: string;
 
   /**
    * ## [KO]
