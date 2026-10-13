@@ -43,7 +43,7 @@ export class DartDisclosureInfo<
         corp_code: params.corp_code,
         bgn_de: params.bgn_de,
         end_de: params.end_de,
-        last_report_at: params.last_reprt_at,
+        last_reprt_at: params.last_reprt_at,
         pblntf_ty: params.pblntf_ty,
         pblntf_detail_ty: params.pblntf_detail_ty,
         corp_cls: params.corp_cls,
