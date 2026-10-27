@@ -1,31 +1,23 @@
-import { BasicPeriodicReportsInfo } from "./BasicPeriodicReportsInfo";
+import { StockBasedCompensationV2 } from "./StockBasedCompensationV2";
 
 /**
  * ## [KO] - 이사·감사의 개인별 보수현황(5억원 이상) Ver 2.0
+ * `group` 배열의 개인별·사업연도별 보수 정보입니다.
  *
  * @link https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS002&apiId=2026001
  *
  * ## [EN] - Remuneration for individual directors and auditors (Ver 2.0)
+ * Remuneration for one person and fiscal year in the `group` array.
  *
  * @link https://engopendart.fss.or.kr/guide/detail.do?apiGrpCd=DE002&apiId=2026001
  */
-export interface IndividualDirectorCompensationV2
-  extends BasicPeriodicReportsInfo {
+export interface IndividualDirectorCompensationV2 {
   /**
-   * ## [KO] - 결산기준일
-   * YYYY-MM-DD
+   * ## [KO] - 이름
+   * 홍길동
    *
-   * ## [EN] - Settlement date
-   * YYYY-MM-DD
-   */
-  stlm_dt: string;
-
-  /**
-   * ## [KO] - 그룹명
-   * 이사, 감사 등 그룹 구분명
-   *
-   * ## [EN] - Group name
-   * Group classification name such as director, auditor, etc.
+   * ## [EN] - Name
+   * Hong Gildong
    */
   nm: string;
 
@@ -55,37 +47,9 @@ export interface IndividualDirectorCompensationV2
   mendng_totamt: string;
 
   /**
-   * ## [KO] - 주식기준보상 지급액 - 수량
+   * ## [KO] - 주식기준보상 상세 내역
    *
-   * ## [EN] - Stock-based compensation payment - quantity
+   * ## [EN] - Stock-based compensation details
    */
-  stk_bsd_pd_mendng_totamt_qty: string;
-
-  /**
-   * ## [KO] - 주식매수선택권 행사가능 수량
-   *
-   * ## [EN] - Stock option exercisable quantity
-   */
-  stk_opt_exrcsbl_qty: string;
-
-  /**
-   * ## [KO] - 주식매수선택권 잔여 잔액
-   *
-   * ## [EN] - Stock option remaining balance
-   */
-  stk_opt_rmn_blce: string;
-
-  /**
-   * ## [KO] - 기타 주식기준보상 시가
-   *
-   * ## [EN] - Other stock-based compensation market value
-   */
-  othr_stk_bsd_cmpn_mkt_vl: string;
-
-  /**
-   * ## [KO] - 비고
-   *
-   * ## [EN] - Remarks
-   */
-  rm: string;
+  list: StockBasedCompensationV2[];
 }

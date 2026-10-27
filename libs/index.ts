@@ -172,6 +172,7 @@ export type { OutsideDirectorStatus } from "./core/periodic-key-info/types/model
 export type { PrivatePlacementFundUsage } from "./core/periodic-key-info/types/model/PrivatePlacementFundUsage";
 export type { PublicOfferingFundUsage } from "./core/periodic-key-info/types/model/PublicOfferingFundUsage";
 export type { ShortTermBondBalance } from "./core/periodic-key-info/types/model/ShortTermBondBalance";
+export type { StockBasedCompensationV2 } from "./core/periodic-key-info/types/model/StockBasedCompensationV2";
 export type { Top5ExecutiveCompensation } from "./core/periodic-key-info/types/model/Top5ExecutiveCompensation";
 export type { Top5ExecutiveCompensationV2 } from "./core/periodic-key-info/types/model/Top5ExecutiveCompensationV2";
 export type { TotalDirectorCompensation } from "./core/periodic-key-info/types/model/TotalDirectorCompensation";
@@ -181,7 +182,10 @@ export type { UnregisteredExecutiveCompensation } from "./core/periodic-key-info
 // Params
 export type { BasicPeriodicReportsParams } from "./core/periodic-key-info/types/params/BasicPeriodicReportsParams";
 // Responses
-export type { BasicPeriodicReportsResponse } from "./core/periodic-key-info/types/responses/BasicPeriodicReportsResponse";
+export type {
+  BasicPeriodicReportsResponse,
+  BasicPeriodicReportsResponseV2,
+} from "./core/periodic-key-info/types/responses/BasicPeriodicReportsResponse";
 
 // ─── Securities Registration Info ─────────────────────────────────────────────
 // Models

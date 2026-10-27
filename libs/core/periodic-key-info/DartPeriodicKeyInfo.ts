@@ -1,6 +1,9 @@
 import { DartBase } from "../DartBase";
 import { BasicPeriodicReportsParams } from "./types/params/BasicPeriodicReportsParams";
-import { BasicPeriodicReportsResponse } from "./types/responses/BasicPeriodicReportsResponse";
+import {
+  BasicPeriodicReportsResponse,
+  BasicPeriodicReportsResponseV2,
+} from "./types/responses/BasicPeriodicReportsResponse";
 import { ApprovedDirectorCompensation } from "./types/model/ApprovedDirectorCompensation";
 import { AuditContractInfo } from "./types/model/AuditContractInfo";
 import { AuditorNameAndOpinion } from "./types/model/AuditorNameAndOpinion";
@@ -687,9 +690,9 @@ export class DartPeriodicKeyInfo<
   public async getIndividualDirectorCompensationV2(
     params: BasicPeriodicReportsParams,
     ...args: DartKeyArgs<K>
-  ): Promise<BasicPeriodicReportsResponse<IndividualDirectorCompensationV2>> {
+  ): Promise<BasicPeriodicReportsResponseV2<IndividualDirectorCompensationV2>> {
     return await this.get<
-      BasicPeriodicReportsResponse<IndividualDirectorCompensationV2>
+      BasicPeriodicReportsResponseV2<IndividualDirectorCompensationV2>
     >("hmvAuditIndvdlBySttusV2.json", params, this.getKeyFromArgs(args));
   }
 
@@ -710,9 +713,9 @@ export class DartPeriodicKeyInfo<
   public async getTop5ExecutiveCompensationV2(
     params: BasicPeriodicReportsParams,
     ...args: DartKeyArgs<K>
-  ): Promise<BasicPeriodicReportsResponse<Top5ExecutiveCompensationV2>> {
+  ): Promise<BasicPeriodicReportsResponseV2<Top5ExecutiveCompensationV2>> {
     return await this.get<
-      BasicPeriodicReportsResponse<Top5ExecutiveCompensationV2>
+      BasicPeriodicReportsResponseV2<Top5ExecutiveCompensationV2>
     >("indvdlByPayV2.json", params, this.getKeyFromArgs(args));
   }
 }
