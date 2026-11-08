@@ -32,7 +32,7 @@ export abstract class DartBase<K extends KeyMode = "INJECTED"> {
       baseURL: this.get_URL(),
     });
 
-    this.xmlParser = new XMLParser();
+    this.xmlParser = new XMLParser({ parseTagValue: false });
   }
 
   /**
